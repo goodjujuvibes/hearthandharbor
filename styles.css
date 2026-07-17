@@ -64,6 +64,18 @@ body {
 a { color: var(--ember); }
 a:hover { color: var(--ember-hi); }
 
+/* Keyboard focus: a clear ring, tuned per ground (rust on parchment/overlays,
+   warm ember on the dark hero and footer). Only shows for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.hero :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--ember-hi);
+}
+
 .page {
   max-width: 1080px;
   margin: 0 auto;

@@ -32,6 +32,13 @@ const DISCORD_URL = '#';
   const overlays = Array.prototype.slice.call(document.querySelectorAll('.overlay'));
   let lastFocused = null;
 
+  // Visible, focusable elements within a container (for the modal focus trap).
+  function focusableIn(el) {
+    return Array.prototype.slice.call(el.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"]), input, select, textarea'
+    )).filter(function (n) { return n.offsetParent !== null; });
+  }
+
   function closeOverlay() {
     let closedAny = false;
     overlays.forEach(function (o) {
@@ -66,6 +73,7 @@ const DISCORD_URL = '#';
 
   // Triggers: anything with data-open="<overlay name>" (optional data-variant skin)
   document.querySelectorAll('[data-open]').forEach(function (trigger) {
+    trigger.setAttribute('aria-haspopup', 'dialog');
     trigger.addEventListener('click', function () {
       openOverlay(trigger.getAttribute('data-open'), trigger.getAttribute('data-variant'));
     });
@@ -98,6 +106,20 @@ const DISCORD_URL = '#';
         closeOverlay();
       });
     }
+    // Trap Tab focus within the open panel so it can't wander behind the modal.
+    o.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || !o.classList.contains('is-open') || !panel) return;
+      const f = focusableIn(panel);
+      if (!f.length) { e.preventDefault(); return; }
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   });
 
   // Esc closes any open overlay.
@@ -105,24 +127,44 @@ const DISCORD_URL = '#';
     if (e.key === 'Escape') closeOverlay();
   });
 
-  /* ---- FAQ accordion (single open) -------------------------------------- */
+  /* ---- FAQ accordion (single open, keyboard-operable) ------------------- */
   const faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
-  faqItems.forEach(function (item) {
+
+  function closeFaq(item) {
+    item.classList.remove('is-open');
     const q = item.querySelector('.faq__q');
     const icon = item.querySelector('.faq__icon');
+    if (q) q.setAttribute('aria-expanded', 'false');
+    if (icon) icon.textContent = '+';
+  }
+
+  faqItems.forEach(function (item, i) {
+    const q = item.querySelector('.faq__q');
+    const icon = item.querySelector('.faq__icon');
+    const answer = item.querySelector('.faq__a');
     if (!q) return;
-    q.addEventListener('click', function () {
+
+    if (answer) {
+      const id = 'faq-answer-' + i;
+      answer.id = id;
+      q.setAttribute('aria-controls', id);
+    }
+
+    function toggle() {
       const isOpen = item.classList.contains('is-open');
-      // Close all first.
-      faqItems.forEach(function (other) {
-        other.classList.remove('is-open');
-        const oi = other.querySelector('.faq__icon');
-        if (oi) oi.textContent = '+';
-      });
-      // Toggle this one open if it wasn't already.
+      faqItems.forEach(closeFaq);
       if (!isOpen) {
         item.classList.add('is-open');
+        q.setAttribute('aria-expanded', 'true');
         if (icon) icon.textContent = '–'; // en dash
+      }
+    }
+
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
       }
     });
   });
