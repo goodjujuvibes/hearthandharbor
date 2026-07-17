@@ -174,16 +174,19 @@ a:hover { color: var(--ember-hi); }
   position: absolute;
   left: 50%;
   top: 61%;
-  width: 80%;
-  height: 86%;
+  width: 84%;
+  height: 90%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  /* Concentrated core that feathers out to nothing; the blur dissolves the
+     outer edge so the halo reads wide but has no discernible rim. */
   background: radial-gradient(circle,
-      rgba(244, 200, 119, .47) 0%,
-      rgba(232, 150, 63, .25) 32%,
-      rgba(232, 150, 63, .1) 52%,
-      rgba(232, 150, 63, .04) 70%,
-      transparent 84%);
+      rgba(244, 200, 119, .42) 0%,
+      rgba(232, 150, 63, .18) 28%,
+      rgba(232, 150, 63, .07) 50%,
+      rgba(232, 150, 63, .02) 72%,
+      transparent 90%);
+  filter: blur(4px);
 }
 .logo svg {
   position: relative;
