@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hearth &amp; Harbor — A place to return to. People to set out with.</title>
+  <meta name="description" content="A small old-school Monsters &amp; Memories guild for patient grouping, dungeon crawling, exploration, and good company. At first light, we set out. By firelight, we return.">
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hearth &amp; Harbor">
+  <meta property="og:description" content="A place to return to. People to set out with. A small old-school Monsters &amp; Memories guild.">
+
+  <!-- Inline flame-glyph favicon (no external asset) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%230b1a26'/%3E%3Cpath%20d='M32%2018%20C40%2028%2043%2033%2043%2040%20C43%2048%2038%2053%2032%2053%20C26%2053%2021%2048%2021%2040%20C21%2033%2024%2028%2032%2018%20Z'%20fill='%23e8963f'/%3E%3Cpath%20d='M32%2030%20C36%2035%2038%2038%2038%2042%20C38%2046.5%2035.5%2049%2032%2049%20C28.5%2049%2026%2046.5%2026%2042%20C26%2038%2028%2035%2032%2030%20Z'%20fill='%23f4c877'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&family=Almendra+SC&family=Cardo:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- ============ HERO: the shore, near fire, far light ============ -->
+  <header class="hero">
+    <div class="starfield"></div>
+    <div class="ember-glow"></div>
+    <div class="hero__inner">
+      <!-- logo glyph: hearth arch + two-tone flame + broken base -->
+      <svg class="glyph--hero" width="88" height="88" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M10 54 L10 30 C10 19.5 21 15 32 9.5 C43 15 54 19.5 54 30 L54 54" stroke="#a8843f" stroke-width="2.5" stroke-linejoin="round" fill="none"></path>
+        <path d="M32 24 C38 32 40 36 40 41 C40 47 36.4 51 32 51 C27.6 51 24 47 24 41 C24 36 26 32 32 24 Z" fill="#e8963f"></path>
+        <path d="M32 33 C35 37 36 39 36 42 C36 45.3 34.2 47 32 47 C29.8 47 28 45.3 28 42 C28 39 29 37 32 33 Z" fill="#f4c877"></path>
+        <path d="M2 57.5 L24 57.5 M40 57.5 L62 57.5" stroke="#a8843f" stroke-width="2.5" stroke-linecap="round"></path>
+      </svg>
+      <h1 class="wordmark wordmark--hero">Hearth<span class="wordmark__amp">&amp;</span>Harbor</h1>
+      <p class="hero__tagline">A place to return to. People to set out with.</p>
+      <div class="divider hero__divider">
+        <div class="divider__line divider__line--amber"></div>
+        <div class="divider__dot"></div>
+        <div class="divider__line divider__line--teal"></div>
+      </div>
+      <p class="motto">At first light, we set out.<br>By firelight, we return.</p>
+      <p class="hero__desc">A small old-school Monsters &amp; Memories guild for patient grouping, dungeon crawling, exploration, corpse-run humor, shared discovery, and good company.</p>
+      <div class="cta-row">
+        <button type="button" class="cta" data-open="join">JOIN THE COMPANY</button>
+        <a class="cta discord-cta" data-discord href="#" target="_blank" rel="noopener">VISIT OUR DISCORD</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cultural strip -->
+  <div class="strip">
+    <div class="strip__rule strip__rule--top rule-brass"></div>
+    <div class="strip__rule strip__rule--bottom rule-teal"></div>
+    <div class="strip__glow"></div>
+    <div class="strip__seg strip__seg--l"></div>
+    <div class="strip__dot"></div>
+    <div class="strip__text">Old Roads&nbsp;&nbsp;·&nbsp;&nbsp;Far Waters&nbsp;&nbsp;·&nbsp;&nbsp;Good Company</div>
+    <div class="strip__dot"></div>
+    <div class="strip__seg strip__seg--r"></div>
+  </div>
+
+  <!-- ============ PARCHMENT BODY ============ -->
+  <div class="body">
+
+    <!-- Meaning -->
+    <section class="section">
+      <div class="eyebrow">THE MEANING</div>
+      <h2 class="heading">The near fire and the far light</h2>
+      <p class="lede meaning__lede">The <i>hearth</i> is the fire at your back, rest, warmth, familiar names in guild chat, the people who come back when an expedition goes badly. The <i>harbor</i> is the light across the water, the safe port you set out toward, and the verb too: to harbor good folks, to give them shelter. The going-out and the coming-back are the same act, one idea pointed two ways, somewhere that stays put while everything else moves. This is a home for adventurers, not a retreat from adventure.</p>
+      <div class="cards">
+        <div class="card card--hearth" data-open="hearth" role="button" tabindex="0" aria-label="Read more about The Hearth">
+          <div class="card__glow"></div>
+          <div class="card__title">The Hearth</div>
+          <div class="card__desc">Rest, fellowship, continuity, recovery, the place the company returns to.</div>
+          <div class="read-more">READ MORE <span>→</span></div>
+        </div>
+        <div class="card card--harbor" data-open="harbor" role="button" tabindex="0" aria-label="Read more about The Harbor">
+          <div class="card__glow"></div>
+          <div class="card__title">The Harbor</div>
+          <div class="card__desc">Departure, exploration, the Age of Discovery, where the company sets out.</div>
+          <div class="read-more">READ MORE <span>→</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why we gather -->
+    <section class="section section--deep">
+      <div class="section-head">
+        <div class="eyebrow">WHY WE GATHER</div>
+        <h2 class="heading">The people are the point</h2>
+      </div>
+      <p class="lede thesis">Most guilds treat the people as the means and the loot as the end. We run it the other way around, the content is the pretext, and the company is the point. A dungeon is just the reason we all happened to be in one place long enough for something to happen between us. Monsters &amp; Memories is built for exactly this: the slow travel, the forced grouping, the corpse runs, friction most games sand off. Here, that friction is the machinery that makes fellowship, and we take the game as it was designed and turn it into something worth belonging to.</p>
+    </section>
+
+    <!-- The Way -->
+    <section class="section">
+      <div class="section-head" style="margin-bottom:34px">
+        <div class="eyebrow">HOW WE TRAVEL</div>
+        <h2 class="heading">The Hearth &amp; Harbor Way</h2>
+      </div>
+      <div class="principles">
+        <div class="principle"><div class="principle__num">I.</div><div><div class="principle__title">People over pace</div><div class="principle__desc">Progress matters, but not more than the group.</div></div></div>
+        <div class="principle"><div class="principle__num">II.</div><div><div class="principle__title">Mirth and mettle</div><div class="principle__desc">Mirth at the hearth; mettle on the road.</div></div></div>
+        <div class="principle"><div class="principle__num">III.</div><div><div class="principle__title">No one abandoned after the wipe</div><div class="principle__desc">No corpse becomes a permanent landmark.</div></div></div>
+        <div class="principle"><div class="principle__num">IV.</div><div><div class="principle__title">Discovery without gatekeeping</div><div class="principle__desc">Questions are welcome; knowledge is shared.</div></div></div>
+        <div class="principle"><div class="principle__num">V.</div><div><div class="principle__title">Teach through companionship</div><div class="principle__desc">A guildmate walks the road with you.</div></div></div>
+        <div class="principle"><div class="principle__num">VI.</div><div><div class="principle__title">Capability without contempt</div><div class="principle__desc">Mistakes are allowed; learning is expected.</div></div></div>
+        <div class="principle"><div class="principle__num">VII.</div><div><div class="principle__title">Keep the harbor open</div><div class="principle__desc">Absences forgiven; returns welcomed.</div></div></div>
+        <div class="principle"><div class="principle__num">VIII.</div><div><div class="principle__title">The company returns together</div><div class="principle__desc">We begin together and return together.</div></div></div>
+      </div>
+      <div class="charter-wrap">
+        <div class="textlink charter-link" data-open="charter" role="button" tabindex="0" aria-label="Read the full charter">
+          <div class="textlink__line textlink__line--l"></div>
+          <div class="textlink__dot"></div>
+          <div class="textlink__label">READ THE FULL CHARTER</div>
+          <div class="textlink__dot"></div>
+          <div class="textlink__line textlink__line--r"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What we do list -->
+    <section class="section section--deep">
+      <div class="section-head" style="margin-bottom:30px">
+        <div class="eyebrow">GUILD LIFE</div>
+        <h2 class="heading">What the Company does</h2>
+      </div>
+      <div class="dolist">
+        <div class="dolist__item"><span class="mark">✦</span>Leveling groups &amp; camp formation</div>
+        <div class="dolist__item"><span class="mark">✦</span>Patient dungeon crawls</div>
+        <div class="dolist__item"><span class="mark">✦</span>Named camps &amp; equipment runs</div>
+        <div class="dolist__item"><span class="mark">✦</span>Exploration &amp; island expeditions</div>
+        <div class="dolist__item"><span class="mark">✦</span>Corpse recovery &amp; rescue</div>
+        <div class="dolist__item"><span class="mark">✦</span>Shared maps, notes &amp; rumors</div>
+        <div class="dolist__item"><span class="mark">✦</span>Low-pressure expedition nights</div>
+        <div class="dolist__item"><span class="mark">✦</span>Fireside gatherings between voyages</div>
+      </div>
+      <p class="note">Active enough to create regular opportunities, never a second job.</p>
+    </section>
+
+    <!-- Be good company -->
+    <section class="section section--sm">
+      <div class="section-head" style="margin-bottom:30px">
+        <div class="eyebrow">HOW WE TREAT ONE ANOTHER</div>
+        <h2 class="heading">Be good company</h2>
+        <p class="gather-sub">One rule underneath all the others. Everything else is just what it looks like in practice.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Presence over attendance</div><div class="pillar__desc">Real life comes first, no one owes the guild constant hours. But when you're around, take part: talk, group, teach, invite someone along.</div></div></div>
+        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Handle failure well</div><div class="pillar__desc">Bad pulls, wrong turns, and wipes are the game. We solve them without blaming, humiliating, or raging at one another.</div></div></div>
+        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Help without controlling</div><div class="pillar__desc">Share what you know freely, but don't force your route, build, pace, or definition of efficiency on anyone.</div></div></div>
+        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Protect trust</div><div class="pillar__desc">No misusing guild resources, manipulating loot, spreading private talk, or treating other members as tools for your own progress.</div></div></div>
+      </div>
+    </section>
+
+    <!-- Small by design -->
+    <section class="section section--sm section--deep section--center">
+      <div class="eyebrow">SMALL BY DESIGN</div>
+      <p class="sbd__headline">About 30–50 regulars, enough for groups, expeditions, and trades; few enough that the names on the roster stay familiar.</p>
+      <p class="sbd__body">We're not trying to be the biggest guild on the server, one hundred is a ceiling, not a goal. A hearth is only warm for people you actually know, and the cap is what keeps it that way.</p>
+    </section>
+
+    <!-- Corpse-run band -->
+    <section class="quoteband">
+      <div class="quoteband__glow"></div>
+      <div class="quoteband__inner">
+        <div class="quoteband__eyebrow">FROM #CORPSE-RUNS</div>
+        <p class="quoteband__quote">&ldquo;Your corpse is not lost. It is temporarily exploring without you.&rdquo;</p>
+        <p class="quoteband__sub">The fire stays lit. We are coming back for you.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="section-head" style="margin-bottom:34px">
+        <div class="eyebrow">BEFORE YOU SET OUT</div>
+        <h2 class="heading">Questions from the road</h2>
+      </div>
+      <div class="faq__list">
+        <div class="faq__item faq__item--amber">
+          <div class="faq__q">
+            <div class="faq__dot faq__dot--amber"></div>
+            <div class="faq__question">Is Hearth &amp; Harbor right for me?</div>
+            <div class="faq__icon">+</div>
+          </div>
+          <div class="faq__a">
+            <div class="faq__a-inner">
+              <p>You'll likely feel at home if you miss the worlds of EverQuest, Vanguard, and vanilla WoW; you'd rather learn a dungeon than race through it; you can laugh at a wipe and still help with the recovery; you want regular groups without a second job; and you value the people beside you as much as the loot ahead.</p>
+              <p class="aside">It's probably <b class="em-not">not</b> for you if every activity is a race, you leave the group at the first setback, inexperience reads as weakness to you, loot matters more than relationships, or &ldquo;casual&rdquo; means no responsibility to the group. A small guild is defined as much by who doesn't join as by who does.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item faq__item--teal">
+          <div class="faq__q">
+            <div class="faq__dot faq__dot--teal"></div>
+            <div class="faq__question">How big will the guild be?</div>
+            <div class="faq__icon">+</div>
+          </div>
+          <div class="faq__a">
+            <div class="faq__a-inner">
+              <p>Small by design: roughly 30&ndash;50 regulars, with room for friends and returning members whose activity comes and goes. Enough people for groups, expeditions, and trades; few enough that the names on the roster stay familiar. We're not chasing the biggest guild on the server; a hearth is only warm for people you actually know.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item faq__item--amber">
+          <div class="faq__q">
+            <div class="faq__dot faq__dot--amber"></div>
+            <div class="faq__question">Do I have to keep a schedule or hit attendance?</div>
+            <div class="faq__icon">+</div>
+          </div>
+          <div class="faq__a">
+            <div class="faq__a-inner">
+              <p>No. There are no attendance requirements and no race to max level; real life comes first. We do hope the guild is more than a silent tag, though: when you're around, talk, group, explore, trade, ask questions, or invite someone along. Presence over attendance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item faq__item--teal">
+          <div class="faq__q">
+            <div class="faq__dot faq__dot--teal"></div>
+            <div class="faq__question">I'm new to the genre, or returning after years. Is that okay?</div>
+            <div class="faq__icon">+</div>
+          </div>
+          <div class="faq__a">
+            <div class="faq__a-inner">
+              <p>Very. Experienced players, newcomers, fast levelers, slow wanderers, crafters, and explorers are all welcome; character matters more than credentials. New members get walked through content, not handed a wiki link, and returning members find familiar names and roads still waiting. The main thing we ask is that you communicate and are willing to learn.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item faq__item--amber">
+          <div class="faq__q">
+            <div class="faq__dot faq__dot--amber"></div>
+            <div class="faq__question">Is it hardcore or casual?</div>
+            <div class="faq__icon">+</div>
+          </div>
+          <div class="faq__a">
+            <div class="faq__a-inner">
+              <p>Neither, exactly. We want to explore dangerous places, defeat difficult encounters, earn meaningful gear, and eventually take on larger content; we're just not willing to sacrifice patience, people, or sanity to get there faster. Capable without contempt, relaxed but not careless: competence and good company in roughly equal measure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Joining the company -->
+    <section class="section section--deep join-section">
+      <div class="section-head" style="margin-bottom:40px">
+        <div class="eyebrow">JOINING THE COMPANY</div>
+        <h2 class="heading">Three steps, no ceremony</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div class="step__title">Come to the fire</div>
+          <div class="step__desc">Hop into the Discord and say hello in #the-hearth. Tell us what you play, or what you played, back when.</div>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__title">Set out with us</div>
+          <div class="step__desc">Group with us for an evening or three. Careful pulls, honest chat, and at least one avoidable death.</div>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <div class="step__title">Drop anchor</div>
+          <div class="step__desc">If the company suits you, you're in, a tag over your head and a corpse-run team for life.</div>
+        </div>
+      </div>
+      <p class="note">No applications. No trials. No attendance sheets.</p>
+    </section>
+
+  </div><!-- /parchment body -->
+
+  <!-- Cultural strip (reversed rules) -->
+  <div class="strip">
+    <div class="strip__rule strip__rule--top rule-teal"></div>
+    <div class="strip__rule strip__rule--bottom rule-brass"></div>
+    <div class="strip__glow"></div>
+    <div class="strip__seg strip__seg--l" style="flex-basis:70px"></div>
+    <div class="strip__dot"></div>
+    <div class="strip__text">Mirth at the Hearth&nbsp;&nbsp;·&nbsp;&nbsp;Mettle on the Road</div>
+    <div class="strip__dot"></div>
+    <div class="strip__seg strip__seg--r" style="flex-basis:70px"></div>
+  </div>
+
+  <!-- ============ FOOTER: the shore at night ============ -->
+  <footer class="footer">
+    <div class="starfield"></div>
+    <div class="ember-glow"></div>
+    <div class="footer__inner">
+      <!-- flame-only glyph -->
+      <svg class="glyph--footer-flame" width="40" height="52" viewBox="18 18 28 40" fill="none" aria-hidden="true">
+        <path d="M32 24 C38 32 40 36 40 41 C40 47 36.4 51 32 51 C27.6 51 24 47 24 41 C24 36 26 32 32 24 Z" fill="#e8963f"></path>
+        <path d="M32 33 C35 37 36 39 36 42 C36 45.3 34.2 47 32 47 C29.8 47 28 45.3 28 42 C28 39 29 37 32 33 Z" fill="#f4c877"></path>
+      </svg>
+      <div class="footer__headline">A new fire is being lit.</div>
+      <p class="footer__body">We're gathering enough compatible people to reliably form groups, learn Aêthoril together, and build the kind of server community that made older MMOs memorable. Old-school experience is welcome, character matters more than credentials.</p>
+      <div class="footer__cta-wrap">
+        <button type="button" class="cta cta--cool" data-open="join">COME SIT DOWN</button>
+      </div>
+      <div class="footer__discord-wrap">
+        <div class="discord-link" data-open="channels" role="button" tabindex="0" aria-label="Visit our Discord channels">
+          <div class="discord-link__line discord-link__line--l"></div>
+          <div class="discord-link__dot"></div>
+          <div class="discord-link__label">VISIT OUR DISCORD</div>
+          <div class="discord-link__dot"></div>
+          <div class="discord-link__line discord-link__line--r"></div>
+        </div>
+      </div>
+    </div>
+    <div class="colophon">
+      <div class="colophon__divider">
+        <div class="divider__line divider__line--amber"></div>
+        <div class="divider__dot"></div>
+        <div class="divider__line divider__line--teal"></div>
+      </div>
+      <svg class="glyph--colophon" width="52" height="52" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M10 54 L10 30 C10 19.5 21 15 32 9.5 C43 15 54 19.5 54 30 L54 54" stroke="#a8843f" stroke-width="2.6" stroke-linejoin="round" fill="none"></path>
+        <path d="M32 24 C38 32 40 36 40 41 C40 47 36.4 51 32 51 C27.6 51 24 47 24 41 C24 36 26 32 32 24 Z" fill="#e8963f"></path>
+        <path d="M32 33 C35 37 36 39 36 42 C36 45.3 34.2 47 32 47 C29.8 47 28 45.3 28 42 C28 39 29 37 32 33 Z" fill="#f4c877"></path>
+        <path d="M2 57.5 L24 57.5 M40 57.5 L62 57.5" stroke="#a8843f" stroke-width="2.6" stroke-linecap="round"></path>
+      </svg>
+      <div class="wordmark wordmark--footer">Hearth<span class="wordmark__amp">&amp;</span>Harbor</div>
+      <div class="colophon__tag">Where every journey has a way home.</div>
+      <div class="colophon__meta">MONSTERS &amp; MEMORIES</div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ============ OVERLAY: THE HEARTH ============ -->
+<div class="overlay" data-overlay="hearth" role="dialog" aria-modal="true" aria-label="The Hearth">
+  <div class="overlay__panel overlay__panel--plain">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <svg class="overlay__glyph overlay__glyph--flame" width="46" height="46" viewBox="18 18 28 40" fill="none" aria-hidden="true"><path d="M32 24 C38 32 40 36 40 41 C40 47 36.4 51 32 51 C27.6 51 24 47 24 41 C24 36 26 32 32 24 Z" fill="#e8963f"></path><path d="M32 33 C35 37 36 39 36 42 C36 45.3 34.2 47 32 47 C29.8 47 28 45.3 28 42 C28 39 29 37 32 33 Z" fill="#f4c877"></path></svg>
+    <div class="overlay__eyebrow">THE FIRE WE RETURN TO</div>
+    <div class="overlay__title">The Hearth</div>
+    <div class="overlay__prose">
+      <div>The hearth is <b>return, rest, warmth, and fellowship</b>, the fire that stays lit whether or not you've come in from the cold yet. It's the inn after the long road, the campfire between pulls, the familiar names in guild chat, and the people who come back when an expedition goes badly.</div>
+      <div>It carries the hearthstone tradition of classic World of Warcraft, and it's directly at home in Monsters &amp; Memories, where campfires and inns grant real rest between expeditions: <i>Warmth of the Campfire</i>, <i>Warmth of the Hearth</i>.</div>
+      <div>And the hearth isn't only the inn back in town. Out on the road, a campfire kindled from gathered wood is a hearth of its own: somewhere to mend, share a meal, wait out the weather, and gather the group before the next pull. Wherever the company stops to rest, that is the hearth.</div>
+      <div>It agrees with the world itself. Aêthoril is a last bastion of warmth and light in a world that has seen too much catastrophe, and a hearth is the human-scale answer to that dark. You cannot bring the mother sun into the Deep. You can keep a fire.</div>
+      <div>The hearth is not the destination, though. It's what makes the frontier possible, a home for adventurers, not a retreat from adventure.</div>
+    </div>
+    <div class="overlay__closing">A place to return to.</div>
+  </div>
+</div>
+
+<!-- ============ OVERLAY: THE HARBOR ============ -->
+<div class="overlay" data-overlay="harbor" role="dialog" aria-modal="true" aria-label="The Harbor">
+  <div class="overlay__panel overlay__panel--harbor">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <svg class="overlay__glyph" width="42" height="42" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="22" y="20" width="20" height="28" rx="2" fill="none" stroke="#14606e" stroke-width="3.5"></rect><circle cx="32" cy="32" r="5.5" fill="#2b8a98"></circle><path d="M25 13 Q32 8 39 13" stroke="#14606e" stroke-width="3.5" fill="none" stroke-linecap="round"></path><path d="M16 52 H48" stroke="#14606e" stroke-width="3.5" stroke-linecap="round"></path></svg>
+    <div class="overlay__eyebrow overlay__eyebrow--teal">THE PLACE WE SET OUT FROM</div>
+    <div class="overlay__title overlay__title--harbor">The Harbor</div>
+    <div class="overlay__prose overlay__prose--harbor">
+      <div>The harbor is <b>shelter and departure both</b>, the safe port at the edge of dangerous water where you provision up, meet your company, and launch the next expedition. It's the threshold between the known world and everything still waiting past the edge of the map.</div>
+      <div>It's the verb, too: to <i>harbor</i> good folks, to give them refuge. A harbor doesn't demand that every ship stay docked, its whole identity depends on people leaving and returning. Some sail out for weeks; the harbor is still there when they come back.</div>
+      <div>It agrees with the world's moment. Aêthoril is a continent ringed by black seas, its Age of Sundering ending and an Age of Discovery beginning, old routes reopening, ships venturing into dangerous water. A harbor is where the going-out begins.</div>
+      <div>The going-out and the coming-back are the same act, one idea pointed two ways. That is the whole guild in two words.</div>
+    </div>
+    <div class="overlay__closing overlay__closing--harbor">People to set out with.</div>
+  </div>
+</div>
+
+<!-- ============ OVERLAY: JOIN / RECRUITMENT ============ -->
+<div class="overlay" data-overlay="join" role="dialog" aria-modal="true" aria-label="Join the Company">
+  <div class="overlay__panel overlay__panel--plain overlay__panel--join">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <svg class="overlay__glyph overlay__glyph--join" width="58" height="58" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M10 54 L10 30 C10 19.5 21 15 32 9.5 C43 15 54 19.5 54 30 L54 54" stroke="#a8843f" stroke-width="2.5" stroke-linejoin="round" fill="none"></path><path d="M32 24 C38 32 40 36 40 41 C40 47 36.4 51 32 51 C27.6 51 24 47 24 41 C24 36 26 32 32 24 Z" fill="#e8963f"></path><path d="M32 33 C35 37 36 39 36 42 C36 45.3 34.2 47 32 47 C29.8 47 28 45.3 28 42 C28 39 29 37 32 33 Z" fill="#f4c877"></path><path d="M2 57.5 L24 57.5 M40 57.5 L62 57.5" stroke="#a8843f" stroke-width="2.5" stroke-linecap="round"></path></svg>
+    <div class="overlay__eyebrow">JOIN THE COMPANY</div>
+    <div class="overlay__title overlay__title--join">Come sit down</div>
+    <div class="join-intro">A place to return to. People to set out with. There are no applications, trials, or attendance sheets, just three easy steps.</div>
+    <div class="join-steps">
+      <div class="join-step">
+        <div class="join-step__num">1</div>
+        <div><div class="join-step__title">Come to the fire</div><div class="join-step__desc">Hop into the Discord and say hello in #the-hearth. Tell us what you play, or what you played, back when.</div></div>
+      </div>
+      <div class="join-step">
+        <div class="join-step__num">2</div>
+        <div><div class="join-step__title">Set out with us</div><div class="join-step__desc">Group with us for an evening or three. Careful pulls, honest chat, and at least one avoidable death.</div></div>
+      </div>
+      <div class="join-step">
+        <div class="join-step__num">3</div>
+        <div><div class="join-step__title">Drop anchor</div><div class="join-step__desc">If the company suits you, you're in, a tag over your head and a corpse-run team for life.</div></div>
+      </div>
+    </div>
+    <div class="join-discord-wrap">
+      <a class="textlink join-discord discord-cta" data-discord href="#" target="_blank" rel="noopener">
+        <div class="textlink__line textlink__line--l"></div>
+        <div class="textlink__dot"></div>
+        <div class="textlink__label">VISIT OUR DISCORD</div>
+        <div class="textlink__dot"></div>
+        <div class="textlink__line textlink__line--r"></div>
+      </a>
+    </div>
+    <div class="join-closing">Old-school experience is welcome; character matters more than credentials.</div>
+  </div>
+</div>
+
+<!-- ============ OVERLAY: THE FULL CHARTER ============ -->
+<div class="overlay" data-overlay="charter" role="dialog" aria-modal="true" aria-label="The Full Charter">
+  <div class="overlay__panel overlay__panel--plain overlay__panel--charter">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <div class="overlay__eyebrow">THE FULL CHARTER</div>
+    <div class="overlay__title overlay__title--charter">The Hearth &amp; Harbor Way</div>
+    <div class="charter-list">
+      <div><div class="charter-item__title"><span class="num">I.</span> People over pace</div><div class="charter-item__desc">We do not sacrifice people merely to move faster. A successful evening is not measured only by experience gained, sometimes it means learning a dungeon, recovering everyone's corpses, or simply a memorable night with good people.</div></div>
+      <div><div class="charter-item__title"><span class="num">II.</span> Mirth and mettle</div><div class="charter-item__desc">Old-school games require patience, competence, and resilience, and they produce absurd deaths, disastrous pulls, and stories that become funny only after everyone is safe. Bring enough mettle to face difficult content and enough mirth not to turn on one another when the group fails.</div></div>
+      <div><div class="charter-item__title"><span class="num">III.</span> No one abandoned after the wipe</div><div class="charter-item__desc">A run does not automatically end when something goes wrong. Whenever reasonably possible, we recover corpses, regroup, replace lost members, and get people safely home.</div></div>
+      <div><div class="charter-item__title"><span class="num">IV.</span> Discovery without gatekeeping</div><div class="charter-item__desc">Questions are welcome. Knowledge is shared, not hoarded. Some members discover everything organically; others appreciate maps and preparation. We respect both, and communicate before spoiling major discoveries.</div></div>
+      <div><div class="charter-item__title"><span class="num">V.</span> Teach through companionship</div><div class="charter-item__desc">A guide can answer a question; a guildmate walks the road with you. We favor shared experience over wiki links, learning camps, routes, and dungeons through actual play together.</div></div>
+      <div><div class="charter-item__title"><span class="num">VI.</span> Capability without contempt</div><div class="charter-item__desc">We want capable players who understand their classes, communicate clearly, and improve over time. We reject the idea that competence requires impatience, humiliation, or elitism. People are allowed to make mistakes, and expected to learn from them.</div></div>
+      <div><div class="charter-item__title"><span class="num">VII.</span> Keep the harbor open</div><div class="charter-item__desc">Real lives interrupt games. People level at different speeds, take breaks, and return after absences. One missed week or one slower character never places you outside the guild, returning members find familiar names and roads still waiting.</div></div>
+      <div><div class="charter-item__title"><span class="num">VIII.</span> The company returns together</div><div class="charter-item__desc">The group is not a temporary arrangement for extracting experience and loot. We begin together, communicate during the journey, and make sure everyone can return safely. The people beside us are part of the adventure.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OVERLAY: DISCORD CHANNELS ============ -->
+<div class="overlay" data-overlay="channels" role="dialog" aria-modal="true" aria-label="Discord Channels">
+  <div class="overlay__panel overlay__panel--plain overlay__panel--channels">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <div class="overlay__eyebrow">THE HEARTH ON DISCORD</div>
+    <div class="overlay__title overlay__title--channels">Where the Company gathers</div>
+    <div class="channels-grid">
+      <div><div class="channel__name">#the-hearth</div><div class="channel__desc">General guild conversation.</div></div>
+      <div><div class="channel__name">#the-road</div><div class="channel__desc">Group formation and LFG.</div></div>
+      <div><div class="channel__name">#expedition-board</div><div class="channel__desc">Scheduled guild events.</div></div>
+      <div><div class="channel__name">#maps-and-rumors</div><div class="channel__desc">Discoveries, routes, lore, and world knowledge.</div></div>
+      <div><div class="channel__name">#camp-check</div><div class="channel__desc">Camp availability, named creatures, opportunities.</div></div>
+      <div><div class="channel__name">#corpse-runs</div><div class="channel__desc">Urgent recovery assistance.</div></div>
+      <div><div class="channel__name">#craft-and-trade</div><div class="channel__desc">Materials, equipment, crafting, exchanges.</div></div>
+      <div><div class="channel__name">#class-campfire</div><div class="channel__desc">Class discussion, questions, and advice.</div></div>
+      <div><div class="channel__name">#stories-from-the-road</div><div class="channel__desc">Screenshots, memorable groups, deaths, discoveries.</div></div>
+      <div><div class="channel__name">#fireside</div><div class="channel__desc">Off-topic conversation.</div></div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
