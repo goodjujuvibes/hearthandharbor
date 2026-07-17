@@ -93,10 +93,10 @@ a:hover { color: var(--ember-hi); }
   inset: 0;
   z-index: 5;
   pointer-events: none;
-  opacity: .16;
+  opacity: .3;
   mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 /* ---- shared decorative layers ------------------------------------------ */
@@ -126,15 +126,17 @@ a:hover { color: var(--ember-hi); }
 .ember-glow {
   position: absolute;
   left: 50%;
-  bottom: -150px;
+  bottom: -80px;
   transform: translateX(-50%);
-  width: 1040px;
-  height: 440px;
+  width: 132%;
+  height: 380px;
   pointer-events: none;
-  background: radial-gradient(ellipse at center,
-      rgba(247, 172, 78, .55) 0%,
-      rgba(242, 154, 66, .2) 44%,
-      transparent 72%);
+  /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb */
+  background: radial-gradient(ellipse 60% 100% at 50% 100%,
+      rgba(247, 176, 84, .52) 0%,
+      rgba(240, 150, 64, .24) 36%,
+      rgba(240, 150, 64, .08) 58%,
+      transparent 78%);
 }
 
 /* signature divider: line — dot — line (amber left / teal right) */
@@ -363,7 +365,24 @@ a:hover { color: var(--ember-hi); }
 
 /* ============ PARCHMENT BODY =========================================== */
 .body {
+  position: relative;
   background: radial-gradient(ellipse at 50% 0%, #f4ebd6, #ede2c8 60%, #e3d4b4);
+}
+/* Parchment character: a fine fiber grain plus a coarse tonal mottle, so the
+   light sections read like aged paper rather than flat fills. Soft-light keeps
+   it clean (gentle lighten/darken) and never muddies the text. */
+.body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .6;
+  mix-blend-mode: soft-light;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  background-size: 180px 180px, 560px 560px;
 }
 .section {
   padding: var(--pad-y) var(--pad-x);
@@ -1157,27 +1176,34 @@ a:hover { color: var(--ember-hi); }
 .starfield::before {
   background-image:
     radial-gradient(1.6px 1.6px at 15% 17%, rgba(226, 238, 246, .95), transparent),
-    radial-gradient(1.5px 1.5px at 40% 10%, rgba(226, 238, 246, .82), transparent),
+    radial-gradient(1.5px 1.5px at 40% 9%, rgba(226, 238, 246, .82), transparent),
     radial-gradient(1.7px 1.7px at 67% 8%, rgba(226, 238, 246, .95), transparent),
-    radial-gradient(1.5px 1.5px at 88% 24%, rgba(226, 238, 246, .9), transparent);
+    radial-gradient(1.5px 1.5px at 88% 22%, rgba(226, 238, 246, .9), transparent),
+    radial-gradient(1.5px 1.5px at 22% 38%, rgba(226, 238, 246, .8), transparent),
+    radial-gradient(1.4px 1.4px at 60% 45%, rgba(226, 238, 246, .72), transparent),
+    radial-gradient(1.6px 1.6px at 93% 40%, rgba(226, 238, 246, .8), transparent);
 }
 .starfield::after {
   background-image:
     radial-gradient(1.5px 1.5px at 28% 25%, rgba(214, 232, 240, .9), transparent),
-    radial-gradient(1.6px 1.6px at 52% 19%, rgba(214, 232, 240, .95), transparent),
-    radial-gradient(1.5px 1.5px at 79% 13%, rgba(214, 232, 240, .9), transparent);
+    radial-gradient(1.6px 1.6px at 52% 18%, rgba(214, 232, 240, .95), transparent),
+    radial-gradient(1.5px 1.5px at 79% 13%, rgba(214, 232, 240, .9), transparent),
+    radial-gradient(1.5px 1.5px at 8% 31%, rgba(214, 232, 240, .82), transparent),
+    radial-gradient(1.4px 1.4px at 44% 35%, rgba(214, 232, 240, .78), transparent),
+    radial-gradient(1.5px 1.5px at 72% 42%, rgba(214, 232, 240, .8), transparent),
+    radial-gradient(1.4px 1.4px at 34% 48%, rgba(214, 232, 240, .7), transparent);
 }
 
 /* Animations run only when the viewer hasn't asked for reduced motion. Each
    thing runs on its own period so nothing reads as a synchronized loop. */
 @media (prefers-reduced-motion: no-preference) {
-  /* the logo halo breathes (visibly, but slow) */
+  /* the logo halo breathes — this carries most of the "living light" */
   .logo::before {
-    animation: hh-glow-breathe 4.7s ease-in-out infinite;
+    animation: hh-glow-breathe 5s ease-in-out infinite;
     will-change: opacity, transform;
   }
-  /* every flame sways at its base and flickers in brightness on separate
-     periods, so it reads like a candle rather than a bounce */
+  /* every flame leans gently at the wick and flickers softly in brightness,
+     as one piece (no independent core blink), so it never bounces or strobes */
   .logo svg path[fill="#e8963f"],
   .logo svg path[fill="#f4c877"],
   .glyph--footer-flame path[fill="#e8963f"],
@@ -1186,14 +1212,8 @@ a:hover { color: var(--ember-hi); }
   .overlay__glyph--flame path[fill="#f4c877"] {
     transform-box: fill-box;
     transform-origin: 50% 100%; /* pivot at the wick */
-    animation: hh-flame-sway 4.3s ease-in-out infinite, hh-flame-lum 2.9s ease-in-out infinite;
+    animation: hh-flame-sway 6s ease-in-out infinite, hh-flame-lum 4.6s ease-in-out infinite;
     will-change: transform, filter;
-  }
-  /* the bright core flickers a touch faster */
-  .logo svg path[fill="#f4c877"],
-  .glyph--footer-flame path[fill="#f4c877"],
-  .overlay__glyph--flame path[fill="#f4c877"] {
-    animation: hh-flame-sway 4.3s ease-in-out infinite, hh-flame-lum 2.2s ease-in-out infinite;
   }
   /* the campfire glow at the base breathes slowly */
   .ember-glow {
@@ -1206,30 +1226,24 @@ a:hover { color: var(--ember-hi); }
 }
 
 @keyframes hh-glow-breathe {
-  0%   { opacity: .76; transform: translate(-50%, -50%) scale(1); }
-  25%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.09); }
-  46%  { opacity: .84; transform: translate(-50%, -50%) scale(1.02); }
-  66%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
-  83%  { opacity: .8;  transform: translate(-50%, -50%) scale(1.03); }
-  100% { opacity: .76; transform: translate(-50%, -50%) scale(1); }
+  0%   { opacity: .6;  transform: translate(-50%, -50%) scale(.97); }
+  30%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+  52%  { opacity: .72; transform: translate(-50%, -50%) scale(1.05); }
+  74%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.16); }
+  100% { opacity: .6;  transform: translate(-50%, -50%) scale(.97); }
 }
-/* sway = a lean at the wick, not a squash */
+/* sway = a gentle lean at the wick only — no vertical squash */
 @keyframes hh-flame-sway {
-  0%   { transform: rotate(0deg)    scaleY(1); }
-  18%  { transform: rotate(-2deg)   scaleY(1.015); }
-  36%  { transform: rotate(1.3deg)  scaleY(.996); }
-  54%  { transform: rotate(2.1deg)  scaleY(1.02); }
-  72%  { transform: rotate(-.7deg)  scaleY(1); }
-  88%  { transform: rotate(1.1deg)  scaleY(1.008); }
-  100% { transform: rotate(0deg)    scaleY(1); }
+  0%, 100% { transform: rotate(0deg); }
+  28%      { transform: rotate(-.9deg); }
+  52%      { transform: rotate(.7deg); }
+  76%      { transform: rotate(-.35deg); }
 }
-/* lum = the brightness flicker of a candle */
+/* lum = a soft brightness flicker, not a strobe */
 @keyframes hh-flame-lum {
   0%, 100% { filter: brightness(1); }
-  22%      { filter: brightness(1.14); }
-  41%      { filter: brightness(.92); }
-  60%      { filter: brightness(1.18); }
-  80%      { filter: brightness(1); }
+  40%      { filter: brightness(1.06); }
+  70%      { filter: brightness(.98); }
 }
 @keyframes hh-ember {
   0%   { opacity: .82; transform: translateX(-50%) scale(1); }
