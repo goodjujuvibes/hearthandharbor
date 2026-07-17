@@ -149,7 +149,7 @@ a:hover { color: var(--ember-hi); }
 }
 .glyph--hero {
   margin-bottom: 20px;
-  filter: drop-shadow(0 0 18px rgba(232, 150, 63, .5));
+  filter: drop-shadow(0 0 20px rgba(232, 150, 63, .58)) drop-shadow(0 0 38px rgba(232, 150, 63, .22));
 }
 .wordmark {
   font-family: var(--f-wordmark);
