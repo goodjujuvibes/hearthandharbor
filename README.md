@@ -30,21 +30,6 @@ python3 -m http.server 8000
 
 Opening `index.html` directly in a browser also works.
 
-## ⚠️ Before going live: set the Discord invite
-
-The "VISIT OUR DISCORD" call-to-action is a **placeholder**. Set the real
-invite in **one place** — the `DISCORD_URL` constant at the top of
-[`app.js`](app.js):
-
-```js
-const DISCORD_URL = 'https://discord.gg/your-invite-code';
-```
-
-While it's left as `'#'`, those buttons are inert (they won't navigate). Once a
-real URL is set, every external Discord CTA links out to it in a new tab. The
-footer "VISIT OUR DISCORD" link opens the in-page channel guide overlay by
-design, and is unaffected.
-
 ## Deploying to GitHub Pages
 
 1. Push to the `main` branch.

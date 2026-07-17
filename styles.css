@@ -17,7 +17,7 @@
   --hairline: #cdbd93;
 
   /* accents */
-  --brass: #a8843f;
+  --brass: #b08d4f;
   --rust: #9a4e17;
   --deep-rust: #8f4a20;
   --ember: #e8963f;
@@ -262,7 +262,7 @@ a:hover { color: var(--ember-hi); }
 .strip__rule--bottom { bottom: 0; }
 .rule-brass {
   background: linear-gradient(90deg, transparent, var(--brass) 30%, var(--brass) 70%, transparent);
-  box-shadow: 0 0 8px rgba(168, 132, 63, .55);
+  box-shadow: 0 0 8px rgba(176, 141, 79, .55);
 }
 .rule-teal {
   background: linear-gradient(90deg, transparent, #6fb0bb 30%, #6fb0bb 70%, transparent);

@@ -5,11 +5,9 @@
    - Discord CTA wiring
    ========================================================================= */
 
-/* -------------------------------------------------------------------------
-   TODO(dev): set the real Discord invite here. This single value is applied
-   to every external "VISIT OUR DISCORD" call-to-action on the page.
-   Example: 'https://discord.gg/your-invite-code'
-   ------------------------------------------------------------------------- */
+/* Discord invite. Set this to the real invite URL (e.g. 'https://discord.gg/xxxx')
+   to activate every "Visit our Discord" call-to-action; while it's '#', those
+   links stay inert. */
 const DISCORD_URL = '#';
 
 (function () {
