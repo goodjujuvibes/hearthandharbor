@@ -131,12 +131,14 @@ a:hover { color: var(--ember-hi); }
   width: 132%;
   height: 380px;
   pointer-events: none;
-  /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb */
+  /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb;
+     warmer orange, and blurred to smooth out any gradient banding */
   background: radial-gradient(ellipse 60% 100% at 50% 100%,
-      rgba(247, 176, 84, .52) 0%,
-      rgba(240, 150, 64, .24) 36%,
-      rgba(240, 150, 64, .08) 58%,
+      rgba(249, 164, 74, .58) 0%,
+      rgba(237, 126, 50, .3) 32%,
+      rgba(226, 104, 42, .12) 55%,
       transparent 78%);
+  filter: blur(7px);
 }
 
 /* signature divider: line — dot — line (amber left / teal right) */
@@ -371,18 +373,27 @@ a:hover { color: var(--ember-hi); }
 /* Parchment character: a fine fiber grain plus a coarse tonal mottle, so the
    light sections read like aged paper rather than flat fills. Soft-light keeps
    it clean (gentle lighten/darken) and never muddies the text. */
-.body::before {
+.body::before,
+.body::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: .6;
+}
+/* fine fiber grain */
+.body::before {
+  opacity: .8;
   mix-blend-mode: soft-light;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
-  background-size: 180px 180px, 560px 560px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 170px 170px;
+}
+/* coarse warm mottle: uneven tone, like aged paper */
+.body::after {
+  opacity: .14;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  background-size: 540px 540px;
 }
 .section {
   padding: var(--pad-y) var(--pad-x);
@@ -664,6 +675,7 @@ a:hover { color: var(--ember-hi); }
 /* ---- Corpse-run quote band -------------------------------------------- */
 .quoteband {
   position: relative;
+  z-index: 3; /* sits above the parchment texture so its dark ground stays clean */
   overflow: hidden;
   text-align: center;
   padding: clamp(34px, 6vw, 58px) var(--pad-x);
@@ -1181,7 +1193,11 @@ a:hover { color: var(--ember-hi); }
     radial-gradient(1.5px 1.5px at 88% 22%, rgba(226, 238, 246, .9), transparent),
     radial-gradient(1.5px 1.5px at 22% 38%, rgba(226, 238, 246, .8), transparent),
     radial-gradient(1.4px 1.4px at 60% 45%, rgba(226, 238, 246, .72), transparent),
-    radial-gradient(1.6px 1.6px at 93% 40%, rgba(226, 238, 246, .8), transparent);
+    radial-gradient(1.6px 1.6px at 93% 40%, rgba(226, 238, 246, .8), transparent),
+    radial-gradient(1.5px 1.5px at 10% 11%, rgba(226, 238, 246, .85), transparent),
+    radial-gradient(1.4px 1.4px at 33% 23%, rgba(226, 238, 246, .78), transparent),
+    radial-gradient(1.6px 1.6px at 75% 29%, rgba(226, 238, 246, .85), transparent),
+    radial-gradient(1.4px 1.4px at 50% 33%, rgba(226, 238, 246, .72), transparent);
 }
 .starfield::after {
   background-image:
@@ -1191,16 +1207,27 @@ a:hover { color: var(--ember-hi); }
     radial-gradient(1.5px 1.5px at 8% 31%, rgba(214, 232, 240, .82), transparent),
     radial-gradient(1.4px 1.4px at 44% 35%, rgba(214, 232, 240, .78), transparent),
     radial-gradient(1.5px 1.5px at 72% 42%, rgba(214, 232, 240, .8), transparent),
-    radial-gradient(1.4px 1.4px at 34% 48%, rgba(214, 232, 240, .7), transparent);
+    radial-gradient(1.4px 1.4px at 34% 48%, rgba(214, 232, 240, .7), transparent),
+    radial-gradient(1.5px 1.5px at 63% 27%, rgba(214, 232, 240, .82), transparent),
+    radial-gradient(1.4px 1.4px at 18% 21%, rgba(214, 232, 240, .78), transparent),
+    radial-gradient(1.6px 1.6px at 90% 33%, rgba(214, 232, 240, .82), transparent),
+    radial-gradient(1.4px 1.4px at 47% 45%, rgba(214, 232, 240, .7), transparent);
 }
 
 /* Animations run only when the viewer hasn't asked for reduced motion. Each
    thing runs on its own period so nothing reads as a synchronized loop. */
 @media (prefers-reduced-motion: no-preference) {
-  /* the logo halo breathes — this carries most of the "living light" */
+  /* the logo halo breathes — this carries most of the "living light", paced
+     close to the flame's own flicker */
   .logo::before {
-    animation: hh-glow-breathe 5s ease-in-out infinite;
+    animation: hh-glow-breathe 4.4s ease-in-out infinite;
     will-change: opacity, transform;
+  }
+  /* the flame-only marks get a breathing glow too (parity with the logos) */
+  .glyph--footer-flame,
+  .overlay__glyph--flame {
+    animation: hh-flame-halo 4.4s ease-in-out infinite;
+    will-change: filter;
   }
   /* every flame leans gently at the wick and flickers softly in brightness,
      as one piece (no independent core blink), so it never bounces or strobes */
@@ -1221,8 +1248,8 @@ a:hover { color: var(--ember-hi); }
     will-change: opacity, transform;
   }
   /* stars twinkle, the two layers out of phase */
-  .starfield::before { animation: hh-twinkle 3.4s ease-in-out infinite; }
-  .starfield::after  { animation: hh-twinkle 5.1s ease-in-out infinite .6s; }
+  .starfield::before { animation: hh-twinkle 2.9s ease-in-out infinite; }
+  .starfield::after  { animation: hh-twinkle 4.3s ease-in-out infinite .5s; }
 }
 
 @keyframes hh-glow-breathe {
@@ -1242,8 +1269,14 @@ a:hover { color: var(--ember-hi); }
 /* lum = a soft brightness flicker, not a strobe */
 @keyframes hh-flame-lum {
   0%, 100% { filter: brightness(1); }
-  40%      { filter: brightness(1.06); }
-  70%      { filter: brightness(.98); }
+  30%      { filter: brightness(1.11); }
+  55%      { filter: brightness(.94); }
+  80%      { filter: brightness(1.05); }
+}
+/* halo = the flame-only marks' glow breathing in step with their flicker */
+@keyframes hh-flame-halo {
+  0%, 100% { filter: drop-shadow(0 0 11px rgba(232, 150, 63, .55)) drop-shadow(0 0 24px rgba(232, 150, 63, .34)); }
+  50%      { filter: drop-shadow(0 0 20px rgba(232, 150, 63, .9)) drop-shadow(0 0 42px rgba(232, 150, 63, .6)); }
 }
 @keyframes hh-ember {
   0%   { opacity: .82; transform: translateX(-50%) scale(1); }
@@ -1253,7 +1286,7 @@ a:hover { color: var(--ember-hi); }
   100% { opacity: .82; transform: translateX(-50%) scale(1); }
 }
 @keyframes hh-twinkle {
-  0%, 100% { opacity: .3; }
+  0%, 100% { opacity: .12; }
   50%      { opacity: 1; }
 }
 
