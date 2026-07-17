@@ -1160,9 +1160,9 @@ a:hover { color: var(--ember-hi); }
     animation: hh-flame-sway 4.8s ease-in-out infinite, hh-flame-lum 3.7s ease-in-out infinite;
     will-change: transform, filter;
   }
-  /* the campfire glow at the base flickers */
+  /* the campfire glow at the base undulates slowly */
   .ember-glow {
-    animation: hh-ember 5s ease-in-out infinite;
+    animation: hh-ember 8.5s ease-in-out infinite;
     will-change: opacity, transform;
   }
 }
@@ -1194,17 +1194,14 @@ a:hover { color: var(--ember-hi); }
   0%, 100% { filter: drop-shadow(0 0 13px rgba(232, 150, 63, .5)); }
   50%      { filter: drop-shadow(0 0 22px rgba(232, 150, 63, .82)); }
 }
-/* irregular little jumps read as a campfire flickering, not a smooth breath */
+/* a slow, soft undulation with a little irregularity — warm, not gasping */
 @keyframes hh-ember {
-  0%   { opacity: .8;  transform: translateX(-50%) scale(1); }
-  12%  { opacity: 1;   transform: translateX(-50%) scale(1.03); }
-  25%  { opacity: .85; transform: translateX(-50%) scale(1.01); }
-  38%  { opacity: .99; transform: translateX(-50%) scale(1.04); }
-  50%  { opacity: .83; transform: translateX(-50%) scale(1.02); }
-  63%  { opacity: 1;   transform: translateX(-50%) scale(1.05); }
-  75%  { opacity: .87; transform: translateX(-50%) scale(1.02); }
-  88%  { opacity: .97; transform: translateX(-50%) scale(1.03); }
-  100% { opacity: .8;  transform: translateX(-50%) scale(1); }
+  0%   { opacity: .9;  transform: translateX(-50%) scale(1); }
+  24%  { opacity: 1;   transform: translateX(-50%) scale(1.028); }
+  42%  { opacity: .94; transform: translateX(-50%) scale(1.014); }
+  60%  { opacity: 1;   transform: translateX(-50%) scale(1.032); }
+  80%  { opacity: .92; transform: translateX(-50%) scale(1.018); }
+  100% { opacity: .9;  transform: translateX(-50%) scale(1); }
 }
 
 /* ---- reduced motion ---------------------------------------------------- */
