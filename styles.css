@@ -445,8 +445,8 @@ a:hover { color: var(--ember-hi); }
   font-size: 16.5px;
   line-height: 1.6;
 }
-.card--hearth .card__desc { color: var(--ink-muted); }
-.card--harbor .card__desc { color: #4f6169; }
+.card--hearth .card__desc { color: #69563a; } /* darkened from --ink-muted for AA on the card gradient */
+.card--harbor .card__desc { color: #485960; } /* darkened for AA on the card gradient */
 .read-more {
   position: relative;
   display: inline-flex;
@@ -1126,6 +1126,60 @@ a:hover { color: var(--ember-hi); }
   color: var(--ink-muted);
   line-height: 1.55;
   margin-top: 2px;
+}
+
+/* ---- ambient life: the flame lives ------------------------------------- */
+/* Only when the viewer hasn't asked for reduced motion. The glow breathes and
+   the flame wavers on different periods, so together they never read as a loop.
+   Flame paths are matched by their fill colors, so every flame animates. */
+@media (prefers-reduced-motion: no-preference) {
+  .logo::before {
+    animation: hh-glow-breathe 5.6s ease-in-out infinite;
+    will-change: opacity, transform;
+  }
+  .logo svg path[fill="#e8963f"],
+  .logo svg path[fill="#f4c877"],
+  .glyph--footer-flame path[fill="#e8963f"],
+  .glyph--footer-flame path[fill="#f4c877"],
+  .overlay__glyph--flame path[fill="#e8963f"],
+  .overlay__glyph--flame path[fill="#f4c877"] {
+    transform-box: fill-box;
+    transform-origin: 50% 100%; /* pivot at the flame's base */
+    animation: hh-flame-waver 3.9s ease-in-out infinite;
+    will-change: transform;
+  }
+  /* the bright core flickers a touch faster than the body */
+  .logo svg path[fill="#f4c877"],
+  .glyph--footer-flame path[fill="#f4c877"],
+  .overlay__glyph--flame path[fill="#f4c877"] {
+    animation: hh-flame-core 3.1s ease-in-out infinite;
+  }
+}
+
+@keyframes hh-glow-breathe {
+  0%   { opacity: .9;  transform: translate(-50%, -50%) scale(1); }
+  20%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.045); }
+  38%  { opacity: .92; transform: translate(-50%, -50%) scale(1.01); }
+  55%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); }
+  72%  { opacity: .88; transform: translate(-50%, -50%) scale(1.0); }
+  88%  { opacity: .97; transform: translate(-50%, -50%) scale(1.03); }
+  100% { opacity: .9;  transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes hh-flame-waver {
+  0%   { transform: scaleY(1) scaleX(1); }
+  25%  { transform: scaleY(1.05) scaleX(.985); }
+  50%  { transform: scaleY(.98) scaleX(1.012); }
+  75%  { transform: scaleY(1.03) scaleX(.992); }
+  100% { transform: scaleY(1) scaleX(1); }
+}
+
+@keyframes hh-flame-core {
+  0%   { transform: scaleY(1) scaleX(1); opacity: 1; }
+  30%  { transform: scaleY(1.07) scaleX(.97); opacity: .95; }
+  55%  { transform: scaleY(.96) scaleX(1.02); opacity: 1; }
+  80%  { transform: scaleY(1.04) scaleX(.99); opacity: .97; }
+  100% { transform: scaleY(1) scaleX(1); opacity: 1; }
 }
 
 /* ---- reduced motion ---------------------------------------------------- */
