@@ -80,7 +80,6 @@ a:hover { color: var(--ember-hi); }
   max-width: 1080px;
   margin: 0 auto;
   background: #0b1a26;
-  box-shadow: 0 0 60px rgba(0, 0, 0, .5);
   overflow: hidden;
 }
 
@@ -115,10 +114,10 @@ a:hover { color: var(--ember-hi); }
      screen blend makes it read as emitted light (a glow), not brown paint over
      the dark; blurred to avoid gradient banding */
   background: radial-gradient(ellipse 66% 122% at 50% 103%,
-      rgba(255, 208, 120, .96) 0%,
-      rgba(253, 160, 70, .7) 20%,
-      rgba(244, 118, 48, .32) 44%,
-      rgba(220, 86, 33, .11) 63%,
+      rgba(255, 218, 138, .97) 0%,
+      rgba(254, 172, 80, .72) 20%,
+      rgba(246, 126, 52, .32) 44%,
+      rgba(222, 90, 35, .11) 63%,
       transparent 80%);
   filter: blur(5px);
   mix-blend-mode: screen;
@@ -777,7 +776,7 @@ a:hover { color: var(--ember-hi); }
 .footer__inner { position: relative; }
 .glyph--footer-flame {
   margin-bottom: 14px;
-  filter: drop-shadow(0 0 14px rgba(232, 150, 63, .75)) drop-shadow(0 0 30px rgba(232, 150, 63, .5));
+  filter: drop-shadow(0 0 16px rgba(232, 150, 63, .6));
 }
 .footer__headline {
   font-family: var(--f-heading);
@@ -1161,9 +1160,9 @@ a:hover { color: var(--ember-hi); }
     animation: hh-flame-sway 4.8s ease-in-out infinite, hh-flame-lum 3.7s ease-in-out infinite;
     will-change: transform, filter;
   }
-  /* the campfire glow at the base breathes slowly */
+  /* the campfire glow at the base flickers */
   .ember-glow {
-    animation: hh-ember 7.5s ease-in-out infinite;
+    animation: hh-ember 5s ease-in-out infinite;
     will-change: opacity, transform;
   }
 }
@@ -1192,15 +1191,20 @@ a:hover { color: var(--ember-hi); }
 }
 /* halo = the flame-only marks' glow breathing in step with their flicker */
 @keyframes hh-flame-halo {
-  0%, 100% { filter: drop-shadow(0 0 11px rgba(232, 150, 63, .55)) drop-shadow(0 0 24px rgba(232, 150, 63, .34)); }
-  50%      { filter: drop-shadow(0 0 20px rgba(232, 150, 63, .9)) drop-shadow(0 0 42px rgba(232, 150, 63, .6)); }
+  0%, 100% { filter: drop-shadow(0 0 13px rgba(232, 150, 63, .5)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(232, 150, 63, .82)); }
 }
+/* irregular little jumps read as a campfire flickering, not a smooth breath */
 @keyframes hh-ember {
-  0%   { opacity: .82; transform: translateX(-50%) scale(1); }
-  33%  { opacity: 1;   transform: translateX(-50%) scale(1.05); }
-  55%  { opacity: .9;  transform: translateX(-50%) scale(1.02); }
-  78%  { opacity: 1;   transform: translateX(-50%) scale(1.06); }
-  100% { opacity: .82; transform: translateX(-50%) scale(1); }
+  0%   { opacity: .8;  transform: translateX(-50%) scale(1); }
+  12%  { opacity: 1;   transform: translateX(-50%) scale(1.03); }
+  25%  { opacity: .85; transform: translateX(-50%) scale(1.01); }
+  38%  { opacity: .99; transform: translateX(-50%) scale(1.04); }
+  50%  { opacity: .83; transform: translateX(-50%) scale(1.02); }
+  63%  { opacity: 1;   transform: translateX(-50%) scale(1.05); }
+  75%  { opacity: .87; transform: translateX(-50%) scale(1.02); }
+  88%  { opacity: .97; transform: translateX(-50%) scale(1.03); }
+  100% { opacity: .8;  transform: translateX(-50%) scale(1); }
 }
 
 /* ---- reduced motion ---------------------------------------------------- */

@@ -228,10 +228,13 @@ const DISCORD_URL = '#';
   const cellH = (yBot - yTop) / rows;
   const ex = { x0: 40, x1: 60, y0: 7, y1: 36 }; // logo + wordmark column
   for (let r = 0; r < rows; r++) {
+    // stagger alternate rows by half a cell so stars don't line up in columns
+    const rowShift = (r % 2) * (cellW / 2);
     for (let c = 0; c < cols; c++) {
-      // jitter within the inner ~64% of the cell keeps a minimum spacing
-      const x = c * cellW + cellW * (0.18 + Math.random() * 0.64);
-      const y = yTop + r * cellH + cellH * (0.18 + Math.random() * 0.64);
+      // near-full-cell jitter so the underlying grid never reads as rows/columns
+      let x = c * cellW + rowShift + cellW * (0.05 + Math.random() * 0.9);
+      const y = yTop + r * cellH + cellH * (0.05 + Math.random() * 0.9);
+      if (x > 99) x -= cellW; // keep the staggered last column on-screen
       if (x > ex.x0 && x < ex.x1 && y > ex.y0 && y < ex.y1) continue;
       specs.push({
         x: x.toFixed(2), y: y.toFixed(2),
