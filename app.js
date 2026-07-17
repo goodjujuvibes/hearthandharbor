@@ -207,3 +207,47 @@ const DISCORD_URL = '#';
     });
   });
 })();
+
+/* =========================================================================
+   Starfield — individual stars so each twinkles on its own random timing
+   (never synchronized), kept clear of the center where the logo/wordmark sit.
+   ========================================================================= */
+(function () {
+  'use strict';
+  const fields = document.querySelectorAll('.starfield');
+  if (!fields.length) return;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  fields.forEach(function (field) {
+    const frag = document.createDocumentFragment();
+    const count = 34;
+    for (let i = 0; i < count; i++) {
+      // Position in the upper sky; retry to avoid the central content column.
+      let x = 0, y = 0;
+      for (let t = 0; t < 10; t++) {
+        x = Math.random() * 100;
+        y = 3 + Math.random() * 46;
+        const inCenter = x > 36 && x < 64 && y > 6 && y < 44;
+        if (!inCenter) break;
+      }
+      const size = (Math.random() * 1.5 + 1).toFixed(2);   // 1.0–2.5px
+      const alpha = (Math.random() * 0.5 + 0.4).toFixed(2); // 0.40–0.90 brightness
+      const star = document.createElement('span');
+      star.className = 'star';
+      star.style.left = x.toFixed(2) + '%';
+      star.style.top = y.toFixed(2) + '%';
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.background = 'rgba(224, 236, 246, ' + alpha + ')';
+      if (reduce) {
+        star.style.animation = 'none';
+      } else {
+        star.style.setProperty('--dur', (Math.random() * 3 + 2.8).toFixed(2) + 's'); // 2.8–5.8s
+        star.style.setProperty('--delay', (-Math.random() * 6).toFixed(2) + 's');    // desync start
+        star.style.setProperty('--min', (Math.random() * 0.4 + 0.15).toFixed(2));    // 0.15–0.55 twinkle depth
+      }
+      frag.appendChild(star);
+    }
+    field.appendChild(frag);
+  });
+})();
