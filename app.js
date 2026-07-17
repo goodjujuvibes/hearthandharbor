@@ -31,6 +31,11 @@ const DISCORD_URL = '#';
   /* ---- Overlays --------------------------------------------------------- */
   const overlays = Array.prototype.slice.call(document.querySelectorAll('.overlay'));
   let lastFocused = null;
+  let overlayHistoryPushed = false;
+
+  function anyOverlayOpen() {
+    return overlays.some(function (o) { return o.classList.contains('is-open'); });
+  }
 
   // Visible, focusable elements within a container (for the modal focus trap).
   function focusableIn(el) {
@@ -56,6 +61,17 @@ const DISCORD_URL = '#';
     }
   }
 
+  // Dismiss initiated by the user (✕ / Esc / backdrop). If we added a history
+  // entry when opening, step back so the URL/history stays clean; the popstate
+  // handler then performs the actual close.
+  function dismissOverlay() {
+    if (overlayHistoryPushed) {
+      history.back();
+    } else {
+      closeOverlay();
+    }
+  }
+
   function openOverlay(name, variant) {
     const target = document.querySelector('.overlay[data-overlay="' + name + '"]');
     if (!target) return;
@@ -67,9 +83,25 @@ const DISCORD_URL = '#';
     if (panel) panel.classList.toggle('is-harbor', variant === 'harbor');
     target.classList.add('is-open');
     body.style.overflow = 'hidden';
+    // Register a history entry so the phone's back-swipe (or Back button)
+    // closes the popup first instead of leaving the site.
+    if (!overlayHistoryPushed) {
+      try {
+        history.pushState({ hhOverlay: true }, '');
+        overlayHistoryPushed = true;
+      } catch (e) { /* history unavailable; fall back to plain close */ }
+    }
     const closeBtn = target.querySelector('.overlay__close');
     if (closeBtn) closeBtn.focus();
   }
+
+  // Back/forward (incl. mobile back-swipe) closes an open overlay.
+  window.addEventListener('popstate', function () {
+    if (anyOverlayOpen()) {
+      overlayHistoryPushed = false;
+      closeOverlay();
+    }
+  });
 
   // Triggers: anything with data-open="<overlay name>" (optional data-variant skin)
   document.querySelectorAll('[data-open]').forEach(function (trigger) {
@@ -91,7 +123,7 @@ const DISCORD_URL = '#';
   // Backdrop click closes; panel click is contained.
   overlays.forEach(function (o) {
     o.addEventListener('click', function () {
-      closeOverlay();
+      dismissOverlay();
     });
     const panel = o.querySelector('.overlay__panel');
     if (panel) {
@@ -103,7 +135,7 @@ const DISCORD_URL = '#';
     if (closeBtn) {
       closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        closeOverlay();
+        dismissOverlay();
       });
     }
     // Trap Tab focus within the open panel so it can't wander behind the modal.
@@ -124,7 +156,7 @@ const DISCORD_URL = '#';
 
   // Esc closes any open overlay.
   window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeOverlay();
+    if (e.key === 'Escape' && anyOverlayOpen()) dismissOverlay();
   });
 
   /* ---- FAQ accordion (single open, keyboard-operable) ------------------- */
@@ -134,8 +166,12 @@ const DISCORD_URL = '#';
     item.classList.remove('is-open');
     const q = item.querySelector('.faq__q');
     const icon = item.querySelector('.faq__icon');
+    const answer = item.querySelector('.faq__a');
     if (q) q.setAttribute('aria-expanded', 'false');
     if (icon) icon.textContent = '+';
+    // Keep the collapsed answer out of the screen-reader flow (it's visually
+    // hidden by max-height, but would otherwise still be announced).
+    if (answer) answer.setAttribute('aria-hidden', 'true');
   }
 
   faqItems.forEach(function (item, i) {
@@ -148,6 +184,7 @@ const DISCORD_URL = '#';
       const id = 'faq-answer-' + i;
       answer.id = id;
       q.setAttribute('aria-controls', id);
+      answer.setAttribute('aria-hidden', 'true'); // starts collapsed
     }
 
     function toggle() {
@@ -157,6 +194,7 @@ const DISCORD_URL = '#';
         item.classList.add('is-open');
         q.setAttribute('aria-expanded', 'true');
         if (icon) icon.textContent = '–'; // en dash
+        if (answer) answer.setAttribute('aria-hidden', 'false');
       }
     }
 

@@ -897,13 +897,32 @@ a:hover { color: var(--ember-hi); }
   width: 660px;
   max-width: 100%;
   max-height: 82vh;
+  max-height: 82dvh; /* accounts for mobile browser toolbars */
   overflow: auto;
   border: 2px solid var(--brass);
   border-radius: 8px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, .6);
   padding: clamp(32px, 6vw, 52px) clamp(24px, 6vw, 60px);
   background: radial-gradient(ellipse at 50% 0%, #f6ecd6, #ede2c8 70%);
+  /* Branded scrollbar (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(176, 141, 79, .6) transparent;
 }
+/* Branded scrollbar (WebKit/Blink) */
+.overlay__panel::-webkit-scrollbar { width: 11px; }
+.overlay__panel::-webkit-scrollbar-track { background: transparent; }
+.overlay__panel::-webkit-scrollbar-thumb {
+  background: rgba(176, 141, 79, .55);
+  border-radius: 7px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.overlay__panel::-webkit-scrollbar-thumb:hover { background: rgba(176, 141, 79, .82); background-clip: padding-box; }
+/* Cool scrollbar for the harbor-toned panels */
+.overlay__panel--harbor,
+.overlay__panel--join.is-harbor { scrollbar-color: rgba(20, 96, 110, .55) transparent; }
+.overlay__panel--harbor::-webkit-scrollbar-thumb,
+.overlay__panel--join.is-harbor::-webkit-scrollbar-thumb { background: rgba(20, 96, 110, .5); background-clip: padding-box; }
 .overlay__panel--harbor {
   border-color: var(--teal);
   background: radial-gradient(ellipse at 50% 0%, #eef2e7, #e3ddc9 70%);
@@ -914,8 +933,13 @@ a:hover { color: var(--ember-hi); }
 .overlay__panel--plain { background: radial-gradient(ellipse at 50% 0%, #f4ebd6, #ede2c8 70%); }
 .overlay__close {
   position: absolute;
-  top: 18px;
-  right: 22px;
+  top: 8px;
+  right: 12px;
+  width: 44px;   /* WCAG-friendly tap target; glyph stays small */
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--f-label);
   font-size: 20px;
   color: #8a7551;
@@ -1108,4 +1132,13 @@ a:hover { color: var(--ember-hi); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition-duration: .01ms !important; }
+}
+
+/* ---- forced colors (e.g. Windows High Contrast) ------------------------ */
+@media (forced-colors: active) {
+  /* Glows/shadows are dropped by the OS; keep interactive elements outlined. */
+  .cta,
+  .card,
+  .overlay__panel { border: 1px solid CanvasText; }
+  :focus-visible { outline: 2px solid Highlight; outline-offset: 3px; }
 }
