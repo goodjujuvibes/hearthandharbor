@@ -147,10 +147,36 @@ a:hover { color: var(--ember-hi); }
   flex-direction: column;
   align-items: center;
 }
-.glyph--hero {
-  margin-bottom: 20px;
-  filter: drop-shadow(0 0 20px rgba(232, 150, 63, .58)) drop-shadow(0 0 38px rgba(232, 150, 63, .22));
+/* Logo mark: one shared glow so every full logo (hero, footer colophon) looks
+   identical wherever it appears. A single smooth radial bloom sits behind the
+   flame — the light source — with a soft even edge-glow on the arch. Percentage
+   sizing keeps it proportional at any glyph size, and one gradient (not stacked
+   shadows) means no banding. */
+.logo {
+  position: relative;
+  display: inline-flex;
+  line-height: 0;
 }
+.logo::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 61%;
+  width: 68%;
+  height: 74%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(circle,
+      rgba(244, 200, 119, .55) 0%,
+      rgba(232, 150, 63, .34) 34%,
+      rgba(232, 150, 63, .12) 56%,
+      transparent 76%);
+}
+.logo svg {
+  position: relative;
+  filter: drop-shadow(0 0 7px rgba(232, 150, 63, .42));
+}
+.logo--hero { margin-bottom: 20px; }
 .wordmark {
   font-family: var(--f-wordmark);
   color: #f3e9d4;
@@ -815,7 +841,6 @@ a:hover { color: var(--ember-hi); }
   height: 6px;
   box-shadow: 0 0 9px rgba(244, 200, 119, .9);
 }
-.glyph--colophon { filter: drop-shadow(0 0 13px rgba(232, 150, 63, .5)); }
 .wordmark--footer {
   font-size: 30px;
   text-shadow: 0 0 24px rgba(232, 150, 63, .22);
