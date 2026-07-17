@@ -54,7 +54,11 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #0b1a26;
+  /* subtle vignette behind the centered page so the desktop side margins have
+     depth instead of a flat fill (matches the page tone at center, darkens
+     gently toward the screen edges) */
+  background: radial-gradient(ellipse 85% 75% at 50% 30%, #0b1a26 0%, #091622 60%, #07121c 100%);
+  background-attachment: fixed;
   color: var(--ink-body);
   font-family: var(--f-body);
   -webkit-font-smoothing: antialiased;
@@ -92,8 +96,6 @@ a:hover { color: var(--ember-hi); }
     radial-gradient(1.7px 1.7px at 7% 11%, rgba(208, 224, 232, .72), transparent),
     radial-gradient(1.4px 1.4px at 19% 5%, rgba(208, 224, 232, .55), transparent),
     radial-gradient(1.9px 1.9px at 32% 16%, rgba(208, 224, 232, .7), transparent),
-    radial-gradient(1.4px 1.4px at 45% 7%, rgba(208, 224, 232, .5), transparent),
-    radial-gradient(1.6px 1.6px at 57% 13%, rgba(208, 224, 232, .66), transparent),
     radial-gradient(1.4px 1.4px at 69% 5%, rgba(208, 224, 232, .5), transparent),
     radial-gradient(1.8px 1.8px at 80% 17%, rgba(208, 224, 232, .68), transparent),
     radial-gradient(1.4px 1.4px at 90% 9%, rgba(208, 224, 232, .55), transparent),
@@ -102,7 +104,6 @@ a:hover { color: var(--ember-hi); }
     radial-gradient(1.7px 1.7px at 38% 27%, rgba(208, 224, 232, .6), transparent),
     radial-gradient(1.4px 1.4px at 62% 25%, rgba(208, 224, 232, .5), transparent),
     radial-gradient(1.8px 1.8px at 85% 30%, rgba(208, 224, 232, .62), transparent),
-    radial-gradient(1.4px 1.4px at 50% 20%, rgba(208, 224, 232, .48), transparent),
     radial-gradient(1.5px 1.5px at 25% 13%, rgba(208, 224, 232, .55), transparent),
     radial-gradient(1.4px 1.4px at 73% 21%, rgba(208, 224, 232, .5), transparent),
     radial-gradient(1.5px 1.5px at 6% 18%, rgba(208, 224, 232, .5), transparent),
@@ -138,7 +139,7 @@ a:hover { color: var(--ember-hi); }
       rgba(247, 130, 55, .27) 44%,
       rgba(223, 92, 37, .1) 63%,
       transparent 80%);
-  filter: blur(9px);
+  filter: blur(13px);
   mix-blend-mode: screen;
 }
 
@@ -171,13 +172,27 @@ a:hover { color: var(--ember-hi); }
   overflow: hidden;
   text-align: center;
   padding: clamp(56px, 10vw, 94px) clamp(20px, 6vw, 72px) clamp(52px, 9vw, 88px);
-  background: linear-gradient(180deg, #0a1a28 0%, #0c1e2c 48%, #122430 70%, #241b12 100%);
+  background: linear-gradient(180deg, #0a1a28 0%, #0b1b2a 25%, #0c1e2c 46%, #0e212e 58%, #122430 70%, #1b1e20 86%, #241b12 100%);
 }
 .hero__inner {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+/* micro-dither over the dark hero/footer: breaks up gradient banding in the
+   blue-into-glow transition. Opacity is tiny — a dither, not visible grain. */
+.hero::after,
+.footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
 }
 /* Logo mark: one shared glow so every full logo (hero, footer colophon) looks
    identical wherever it appears. A single smooth radial bloom sits behind the
@@ -790,9 +805,9 @@ a:hover { color: var(--ember-hi); }
   overflow: hidden;
   text-align: center;
   padding: clamp(52px, 9vw, 80px) clamp(20px, 6vw, 72px) 40px;
-  background: linear-gradient(180deg, #0a1a28 0%, #0c1e2c 48%, #122430 70%, #241b12 100%);
+  background: linear-gradient(180deg, #0a1a28 0%, #0b1b2a 25%, #0c1e2c 46%, #0e212e 58%, #122430 70%, #1b1e20 86%, #241b12 100%);
 }
-.footer__inner { position: relative; }
+.footer__inner { position: relative; z-index: 2; }
 .glyph--footer-flame {
   margin-bottom: 14px;
   filter: drop-shadow(0 0 14px rgba(232, 150, 63, .75)) drop-shadow(0 0 30px rgba(232, 150, 63, .5));
