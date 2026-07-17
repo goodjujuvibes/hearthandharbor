@@ -174,19 +174,20 @@ a:hover { color: var(--ember-hi); }
   position: absolute;
   left: 50%;
   top: 61%;
-  width: 68%;
-  height: 74%;
+  width: 80%;
+  height: 86%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   background: radial-gradient(circle,
-      rgba(244, 200, 119, .55) 0%,
-      rgba(232, 150, 63, .34) 34%,
-      rgba(232, 150, 63, .12) 56%,
-      transparent 76%);
+      rgba(244, 200, 119, .47) 0%,
+      rgba(232, 150, 63, .25) 32%,
+      rgba(232, 150, 63, .1) 52%,
+      rgba(232, 150, 63, .04) 70%,
+      transparent 84%);
 }
 .logo svg {
   position: relative;
-  filter: drop-shadow(0 0 7px rgba(232, 150, 63, .42));
+  filter: drop-shadow(0 0 8px rgba(232, 150, 63, .36));
 }
 .logo--hero { margin-bottom: 20px; }
 .wordmark {
