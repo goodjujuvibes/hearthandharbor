@@ -77,11 +77,26 @@ a:hover { color: var(--ember-hi); }
 }
 
 .page {
+  position: relative;
   max-width: 1080px;
   margin: 0 auto;
   background: #0b1a26;
   box-shadow: 0 0 60px rgba(0, 0, 0, .5);
   overflow: hidden;
+}
+/* Faint paper/film grain over the whole page: adds richness to the large
+   gradient fields and quietly kills any banding. Sits above everything at low
+   opacity, so it never touches legibility. */
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: .16;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 /* ---- shared decorative layers ------------------------------------------ */
@@ -111,15 +126,15 @@ a:hover { color: var(--ember-hi); }
 .ember-glow {
   position: absolute;
   left: 50%;
-  bottom: -170px;
+  bottom: -150px;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 420px;
+  width: 1040px;
+  height: 440px;
   pointer-events: none;
   background: radial-gradient(ellipse at center,
-      rgba(246, 168, 74, .44) 0%,
-      rgba(242, 154, 66, .12) 46%,
-      transparent 70%);
+      rgba(247, 172, 78, .55) 0%,
+      rgba(242, 154, 66, .2) 44%,
+      transparent 72%);
 }
 
 /* signature divider: line — dot — line (amber left / teal right) */
@@ -1128,15 +1143,41 @@ a:hover { color: var(--ember-hi); }
   margin-top: 2px;
 }
 
-/* ---- ambient life: the flame lives ------------------------------------- */
-/* Only when the viewer hasn't asked for reduced motion. The glow breathes and
-   the flame wavers on different periods, so together they never read as a loop.
-   Flame paths are matched by their fill colors, so every flame animates. */
+/* ---- ambient life: campfire under a starry night ----------------------- */
+/* Extra shimmering stars over the steady field (a real sky has a few that
+   twinkle and many that don't). These exist even under reduced motion; only
+   the twinkle animation is gated below. */
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.starfield::before {
+  background-image:
+    radial-gradient(1.6px 1.6px at 15% 17%, rgba(226, 238, 246, .95), transparent),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(226, 238, 246, .82), transparent),
+    radial-gradient(1.7px 1.7px at 67% 8%, rgba(226, 238, 246, .95), transparent),
+    radial-gradient(1.5px 1.5px at 88% 24%, rgba(226, 238, 246, .9), transparent);
+}
+.starfield::after {
+  background-image:
+    radial-gradient(1.5px 1.5px at 28% 25%, rgba(214, 232, 240, .9), transparent),
+    radial-gradient(1.6px 1.6px at 52% 19%, rgba(214, 232, 240, .95), transparent),
+    radial-gradient(1.5px 1.5px at 79% 13%, rgba(214, 232, 240, .9), transparent);
+}
+
+/* Animations run only when the viewer hasn't asked for reduced motion. Each
+   thing runs on its own period so nothing reads as a synchronized loop. */
 @media (prefers-reduced-motion: no-preference) {
+  /* the logo halo breathes (visibly, but slow) */
   .logo::before {
-    animation: hh-glow-breathe 5.6s ease-in-out infinite;
+    animation: hh-glow-breathe 4.7s ease-in-out infinite;
     will-change: opacity, transform;
   }
+  /* every flame sways at its base and flickers in brightness on separate
+     periods, so it reads like a candle rather than a bounce */
   .logo svg path[fill="#e8963f"],
   .logo svg path[fill="#f4c877"],
   .glyph--footer-flame path[fill="#e8963f"],
@@ -1144,42 +1185,62 @@ a:hover { color: var(--ember-hi); }
   .overlay__glyph--flame path[fill="#e8963f"],
   .overlay__glyph--flame path[fill="#f4c877"] {
     transform-box: fill-box;
-    transform-origin: 50% 100%; /* pivot at the flame's base */
-    animation: hh-flame-waver 3.9s ease-in-out infinite;
-    will-change: transform;
+    transform-origin: 50% 100%; /* pivot at the wick */
+    animation: hh-flame-sway 4.3s ease-in-out infinite, hh-flame-lum 2.9s ease-in-out infinite;
+    will-change: transform, filter;
   }
-  /* the bright core flickers a touch faster than the body */
+  /* the bright core flickers a touch faster */
   .logo svg path[fill="#f4c877"],
   .glyph--footer-flame path[fill="#f4c877"],
   .overlay__glyph--flame path[fill="#f4c877"] {
-    animation: hh-flame-core 3.1s ease-in-out infinite;
+    animation: hh-flame-sway 4.3s ease-in-out infinite, hh-flame-lum 2.2s ease-in-out infinite;
   }
+  /* the campfire glow at the base breathes slowly */
+  .ember-glow {
+    animation: hh-ember 7.5s ease-in-out infinite;
+    will-change: opacity, transform;
+  }
+  /* stars twinkle, the two layers out of phase */
+  .starfield::before { animation: hh-twinkle 3.4s ease-in-out infinite; }
+  .starfield::after  { animation: hh-twinkle 5.1s ease-in-out infinite .6s; }
 }
 
 @keyframes hh-glow-breathe {
-  0%   { opacity: .9;  transform: translate(-50%, -50%) scale(1); }
-  20%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.045); }
-  38%  { opacity: .92; transform: translate(-50%, -50%) scale(1.01); }
-  55%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); }
-  72%  { opacity: .88; transform: translate(-50%, -50%) scale(1.0); }
-  88%  { opacity: .97; transform: translate(-50%, -50%) scale(1.03); }
-  100% { opacity: .9;  transform: translate(-50%, -50%) scale(1); }
+  0%   { opacity: .76; transform: translate(-50%, -50%) scale(1); }
+  25%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.09); }
+  46%  { opacity: .84; transform: translate(-50%, -50%) scale(1.02); }
+  66%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+  83%  { opacity: .8;  transform: translate(-50%, -50%) scale(1.03); }
+  100% { opacity: .76; transform: translate(-50%, -50%) scale(1); }
 }
-
-@keyframes hh-flame-waver {
-  0%   { transform: scaleY(1) scaleX(1); }
-  25%  { transform: scaleY(1.05) scaleX(.985); }
-  50%  { transform: scaleY(.98) scaleX(1.012); }
-  75%  { transform: scaleY(1.03) scaleX(.992); }
-  100% { transform: scaleY(1) scaleX(1); }
+/* sway = a lean at the wick, not a squash */
+@keyframes hh-flame-sway {
+  0%   { transform: rotate(0deg)    scaleY(1); }
+  18%  { transform: rotate(-2deg)   scaleY(1.015); }
+  36%  { transform: rotate(1.3deg)  scaleY(.996); }
+  54%  { transform: rotate(2.1deg)  scaleY(1.02); }
+  72%  { transform: rotate(-.7deg)  scaleY(1); }
+  88%  { transform: rotate(1.1deg)  scaleY(1.008); }
+  100% { transform: rotate(0deg)    scaleY(1); }
 }
-
-@keyframes hh-flame-core {
-  0%   { transform: scaleY(1) scaleX(1); opacity: 1; }
-  30%  { transform: scaleY(1.07) scaleX(.97); opacity: .95; }
-  55%  { transform: scaleY(.96) scaleX(1.02); opacity: 1; }
-  80%  { transform: scaleY(1.04) scaleX(.99); opacity: .97; }
-  100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+/* lum = the brightness flicker of a candle */
+@keyframes hh-flame-lum {
+  0%, 100% { filter: brightness(1); }
+  22%      { filter: brightness(1.14); }
+  41%      { filter: brightness(.92); }
+  60%      { filter: brightness(1.18); }
+  80%      { filter: brightness(1); }
+}
+@keyframes hh-ember {
+  0%   { opacity: .82; transform: translateX(-50%) scale(1); }
+  33%  { opacity: 1;   transform: translateX(-50%) scale(1.05); }
+  55%  { opacity: .9;  transform: translateX(-50%) scale(1.02); }
+  78%  { opacity: 1;   transform: translateX(-50%) scale(1.06); }
+  100% { opacity: .82; transform: translateX(-50%) scale(1); }
+}
+@keyframes hh-twinkle {
+  0%, 100% { opacity: .3; }
+  50%      { opacity: 1; }
 }
 
 /* ---- reduced motion ---------------------------------------------------- */
