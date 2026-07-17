@@ -51,31 +51,28 @@ const DISCORD_URL = '#';
     }
   }
 
-  function openOverlay(name, variant) {
+  function openOverlay(name) {
     const target = document.querySelector('.overlay[data-overlay="' + name + '"]');
     if (!target) return;
     closeOverlay();
     lastFocused = document.activeElement;
-    // Tint variant (e.g. the join overlay opens in "harbor" teal from the footer).
-    const panel = target.querySelector('.overlay__panel');
-    if (panel) panel.classList.toggle('is-harbor', variant === 'harbor');
     target.classList.add('is-open');
     body.style.overflow = 'hidden';
     const closeBtn = target.querySelector('.overlay__close');
     if (closeBtn) closeBtn.focus();
   }
 
-  // Triggers: anything with data-open="<overlay name>" (optional data-variant)
+  // Triggers: anything with data-open="<overlay name>"
   document.querySelectorAll('[data-open]').forEach(function (trigger) {
     trigger.addEventListener('click', function () {
-      openOverlay(trigger.getAttribute('data-open'), trigger.getAttribute('data-variant'));
+      openOverlay(trigger.getAttribute('data-open'));
     });
     // Keyboard activation for non-button triggers (cards, dot-line links)
     if (trigger.tagName !== 'BUTTON') {
       trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openOverlay(trigger.getAttribute('data-open'), trigger.getAttribute('data-variant'));
+          openOverlay(trigger.getAttribute('data-open'));
         }
       });
     }
