@@ -51,28 +51,32 @@ const DISCORD_URL = '#';
     }
   }
 
-  function openOverlay(name) {
+  function openOverlay(name, variant) {
     const target = document.querySelector('.overlay[data-overlay="' + name + '"]');
     if (!target) return;
     closeOverlay();
     lastFocused = document.activeElement;
+    // Skin variant: the join overlay opens in its harbor (teal) skin from the
+    // footer "Come sit down" button, and its default hearth skin from the hero.
+    const panel = target.querySelector('.overlay__panel');
+    if (panel) panel.classList.toggle('is-harbor', variant === 'harbor');
     target.classList.add('is-open');
     body.style.overflow = 'hidden';
     const closeBtn = target.querySelector('.overlay__close');
     if (closeBtn) closeBtn.focus();
   }
 
-  // Triggers: anything with data-open="<overlay name>"
+  // Triggers: anything with data-open="<overlay name>" (optional data-variant skin)
   document.querySelectorAll('[data-open]').forEach(function (trigger) {
     trigger.addEventListener('click', function () {
-      openOverlay(trigger.getAttribute('data-open'));
+      openOverlay(trigger.getAttribute('data-open'), trigger.getAttribute('data-variant'));
     });
     // Keyboard activation for non-button triggers (cards, dot-line links)
     if (trigger.tagName !== 'BUTTON') {
       trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openOverlay(trigger.getAttribute('data-open'));
+          openOverlay(trigger.getAttribute('data-open'), trigger.getAttribute('data-variant'));
         }
       });
     }

@@ -749,6 +749,13 @@ a:hover { color: var(--ember-hi); }
   line-height: 1.7;
 }
 .footer__cta-wrap { margin-top: 32px; }
+.footer__reassure {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--night-body);
+  margin-top: 16px;
+}
 .footer__discord-wrap {
   display: flex;
   justify-content: center;
@@ -956,11 +963,13 @@ a:hover { color: var(--ember-hi); }
   font-family: var(--f-heading);
   font-weight: 700;
   font-size: 30px;
-  color: var(--teal);
+  color: var(--rust);
   line-height: 1;
   flex: none;
   min-width: 26px;
 }
+/* Hearth skin (default): flame glyph shows, lighthouse hidden. */
+.join-glyph--harbor { display: none; }
 .join-step__title {
   font-family: var(--f-heading);
   font-weight: 700;
@@ -989,6 +998,29 @@ a:hover { color: var(--ember-hi); }
   color: var(--ink-muted);
   margin-top: 18px;
 }
+
+/* Harbor skin for the join overlay — same content as the hearth skin, dressed
+   to match The Harbor overlay. Applied when opened from the footer "Come sit
+   down" (teal) button; the hero "Join the company" button keeps the hearth skin. */
+.overlay__panel--join.is-harbor {
+  border-color: var(--teal);
+  background: radial-gradient(ellipse at 50% 0%, #eef2e7, #e3ddc9 70%);
+}
+.overlay__panel--join.is-harbor .join-glyph--hearth { display: none; }
+.overlay__panel--join.is-harbor .join-glyph--harbor { display: block; }
+.overlay__panel--join.is-harbor .overlay__eyebrow { color: var(--teal); }
+.overlay__panel--join.is-harbor .overlay__title { color: #243238; }
+.overlay__panel--join.is-harbor .join-intro { color: #4f6169; }
+.overlay__panel--join.is-harbor .join-step__num { color: var(--teal); }
+.overlay__panel--join.is-harbor .join-step__title { color: #243238; }
+.overlay__panel--join.is-harbor .join-step__desc { color: #33414a; }
+.overlay__panel--join.is-harbor .join-closing { color: #4f6169; }
+.overlay__panel--join.is-harbor .overlay__close { color: #5f7a7e; }
+.overlay__panel--join.is-harbor .overlay__close:hover { color: var(--teal); }
+.overlay__panel--join.is-harbor .join-discord .textlink__label { color: var(--teal); }
+.overlay__panel--join.is-harbor .join-discord .textlink__dot { background: var(--teal); }
+.overlay__panel--join.is-harbor .join-discord .textlink__line--l { background: linear-gradient(90deg, transparent, #7fa8ad); }
+.overlay__panel--join.is-harbor .join-discord .textlink__line--r { background: linear-gradient(270deg, transparent, #7fa8ad); }
 
 /* charter overlay */
 .charter-list {
