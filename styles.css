@@ -77,26 +77,11 @@ a:hover { color: var(--ember-hi); }
 }
 
 .page {
-  position: relative;
   max-width: 1080px;
   margin: 0 auto;
   background: #0b1a26;
   box-shadow: 0 0 60px rgba(0, 0, 0, .5);
   overflow: hidden;
-}
-/* Faint paper/film grain over the whole page: adds richness to the large
-   gradient fields and quietly kills any banding. Sits above everything at low
-   opacity, so it never touches legibility. */
-.page::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  opacity: .3;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
 }
 
 /* ---- shared decorative layers ------------------------------------------ */
@@ -104,23 +89,15 @@ a:hover { color: var(--ember-hi); }
   position: absolute;
   inset: 0;
   pointer-events: none;
+  /* a few faint, distant static stars for depth; the bright stars live in the
+     twinkling ::before / ::after layers */
   background-image:
-    radial-gradient(1.7px 1.7px at 7% 11%, rgba(208, 224, 232, .72), transparent),
-    radial-gradient(1.4px 1.4px at 19% 5%, rgba(208, 224, 232, .55), transparent),
-    radial-gradient(1.9px 1.9px at 32% 16%, rgba(208, 224, 232, .7), transparent),
-    radial-gradient(1.4px 1.4px at 45% 7%, rgba(208, 224, 232, .5), transparent),
-    radial-gradient(1.6px 1.6px at 57% 13%, rgba(208, 224, 232, .66), transparent),
-    radial-gradient(1.4px 1.4px at 69% 5%, rgba(208, 224, 232, .5), transparent),
-    radial-gradient(1.8px 1.8px at 80% 17%, rgba(208, 224, 232, .68), transparent),
-    radial-gradient(1.4px 1.4px at 90% 9%, rgba(208, 224, 232, .55), transparent),
-    radial-gradient(1.6px 1.6px at 95% 22%, rgba(208, 224, 232, .6), transparent),
-    radial-gradient(1.4px 1.4px at 13% 23%, rgba(208, 224, 232, .5), transparent),
-    radial-gradient(1.7px 1.7px at 38% 27%, rgba(208, 224, 232, .6), transparent),
-    radial-gradient(1.4px 1.4px at 62% 25%, rgba(208, 224, 232, .5), transparent),
-    radial-gradient(1.8px 1.8px at 85% 30%, rgba(208, 224, 232, .62), transparent),
-    radial-gradient(1.4px 1.4px at 50% 20%, rgba(208, 224, 232, .48), transparent),
-    radial-gradient(1.5px 1.5px at 25% 13%, rgba(208, 224, 232, .55), transparent),
-    radial-gradient(1.4px 1.4px at 73% 21%, rgba(208, 224, 232, .5), transparent);
+    radial-gradient(1.2px 1.2px at 19% 6%, rgba(200, 216, 226, .3), transparent),
+    radial-gradient(1.1px 1.1px at 45% 12%, rgba(200, 216, 226, .26), transparent),
+    radial-gradient(1.2px 1.2px at 69% 6%, rgba(200, 216, 226, .3), transparent),
+    radial-gradient(1.1px 1.1px at 84% 16%, rgba(200, 216, 226, .26), transparent),
+    radial-gradient(1.2px 1.2px at 57% 27%, rgba(200, 216, 226, .28), transparent),
+    radial-gradient(1.1px 1.1px at 13% 30%, rgba(200, 216, 226, .26), transparent);
 }
 
 .ember-glow {
@@ -131,14 +108,16 @@ a:hover { color: var(--ember-hi); }
   width: 132%;
   height: 380px;
   pointer-events: none;
-  /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb;
-     warmer orange, and blurred to smooth out any gradient banding */
-  background: radial-gradient(ellipse 60% 100% at 50% 100%,
-      rgba(249, 164, 74, .58) 0%,
-      rgba(237, 126, 50, .3) 32%,
-      rgba(226, 104, 42, .12) 55%,
+  /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb.
+     screen blend makes it read as emitted light (a glow), not brown paint over
+     the dark; blurred to avoid gradient banding */
+  background: radial-gradient(ellipse 62% 100% at 50% 100%,
+      rgba(255, 199, 120, .62) 0%,
+      rgba(249, 154, 72, .36) 30%,
+      rgba(233, 121, 55, .13) 55%,
       transparent 78%);
-  filter: blur(7px);
+  filter: blur(6px);
+  mix-blend-mode: screen;
 }
 
 /* signature divider: line — dot — line (amber left / teal right) */
@@ -373,27 +352,19 @@ a:hover { color: var(--ember-hi); }
 /* Parchment character: a fine fiber grain plus a coarse tonal mottle, so the
    light sections read like aged paper rather than flat fills. Soft-light keeps
    it clean (gentle lighten/darken) and never muddies the text. */
-.body::before,
-.body::after {
+/* Aged-paper mottle: soft low-frequency tone variation on a tile wider than the
+   page, so there are no repeating vertical seams. Soft-light keeps it warm and
+   never muddies the text. */
+.body::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-}
-/* fine fiber grain */
-.body::before {
-  opacity: .8;
+  opacity: .5;
   mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 170px 170px;
-}
-/* coarse warm mottle: uneven tone, like aged paper */
-.body::after {
-  opacity: .14;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
-  background-size: 540px 540px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: 1200px 1200px;
 }
 .section {
   padding: var(--pad-y) var(--pad-x);
@@ -1185,33 +1156,37 @@ a:hover { color: var(--ember-hi); }
   inset: 0;
   pointer-events: none;
 }
+/* Layer A: brighter, mixed sizes, a deeper twinkle */
 .starfield::before {
   background-image:
-    radial-gradient(1.6px 1.6px at 15% 17%, rgba(226, 238, 246, .95), transparent),
-    radial-gradient(1.5px 1.5px at 40% 9%, rgba(226, 238, 246, .82), transparent),
-    radial-gradient(1.7px 1.7px at 67% 8%, rgba(226, 238, 246, .95), transparent),
-    radial-gradient(1.5px 1.5px at 88% 22%, rgba(226, 238, 246, .9), transparent),
-    radial-gradient(1.5px 1.5px at 22% 38%, rgba(226, 238, 246, .8), transparent),
-    radial-gradient(1.4px 1.4px at 60% 45%, rgba(226, 238, 246, .72), transparent),
-    radial-gradient(1.6px 1.6px at 93% 40%, rgba(226, 238, 246, .8), transparent),
-    radial-gradient(1.5px 1.5px at 10% 11%, rgba(226, 238, 246, .85), transparent),
-    radial-gradient(1.4px 1.4px at 33% 23%, rgba(226, 238, 246, .78), transparent),
-    radial-gradient(1.6px 1.6px at 75% 29%, rgba(226, 238, 246, .85), transparent),
-    radial-gradient(1.4px 1.4px at 50% 33%, rgba(226, 238, 246, .72), transparent);
+    radial-gradient(2px 2px at 15% 17%, rgba(228, 240, 248, 1), transparent),
+    radial-gradient(1.4px 1.4px at 40% 9%, rgba(228, 240, 248, .8), transparent),
+    radial-gradient(1.8px 1.8px at 67% 8%, rgba(228, 240, 248, .95), transparent),
+    radial-gradient(1.3px 1.3px at 88% 22%, rgba(228, 240, 248, .78), transparent),
+    radial-gradient(1.7px 1.7px at 22% 38%, rgba(228, 240, 248, .88), transparent),
+    radial-gradient(1.3px 1.3px at 60% 45%, rgba(228, 240, 248, .7), transparent),
+    radial-gradient(1.9px 1.9px at 93% 40%, rgba(228, 240, 248, .92), transparent),
+    radial-gradient(1.4px 1.4px at 10% 11%, rgba(228, 240, 248, .8), transparent),
+    radial-gradient(1.6px 1.6px at 33% 23%, rgba(228, 240, 248, .85), transparent),
+    radial-gradient(1.3px 1.3px at 75% 29%, rgba(228, 240, 248, .74), transparent),
+    radial-gradient(1.7px 1.7px at 50% 33%, rgba(228, 240, 248, .88), transparent),
+    radial-gradient(1.4px 1.4px at 4% 34%, rgba(228, 240, 248, .78), transparent);
 }
+/* Layer B: mixed sizes, offset positions, a gentler twinkle */
 .starfield::after {
   background-image:
-    radial-gradient(1.5px 1.5px at 28% 25%, rgba(214, 232, 240, .9), transparent),
-    radial-gradient(1.6px 1.6px at 52% 18%, rgba(214, 232, 240, .95), transparent),
-    radial-gradient(1.5px 1.5px at 79% 13%, rgba(214, 232, 240, .9), transparent),
-    radial-gradient(1.5px 1.5px at 8% 31%, rgba(214, 232, 240, .82), transparent),
-    radial-gradient(1.4px 1.4px at 44% 35%, rgba(214, 232, 240, .78), transparent),
-    radial-gradient(1.5px 1.5px at 72% 42%, rgba(214, 232, 240, .8), transparent),
-    radial-gradient(1.4px 1.4px at 34% 48%, rgba(214, 232, 240, .7), transparent),
-    radial-gradient(1.5px 1.5px at 63% 27%, rgba(214, 232, 240, .82), transparent),
-    radial-gradient(1.4px 1.4px at 18% 21%, rgba(214, 232, 240, .78), transparent),
-    radial-gradient(1.6px 1.6px at 90% 33%, rgba(214, 232, 240, .82), transparent),
-    radial-gradient(1.4px 1.4px at 47% 45%, rgba(214, 232, 240, .7), transparent);
+    radial-gradient(1.4px 1.4px at 28% 25%, rgba(216, 234, 242, .82), transparent),
+    radial-gradient(2px 2px at 52% 18%, rgba(216, 234, 242, .95), transparent),
+    radial-gradient(1.3px 1.3px at 79% 13%, rgba(216, 234, 242, .78), transparent),
+    radial-gradient(1.7px 1.7px at 8% 31%, rgba(216, 234, 242, .88), transparent),
+    radial-gradient(1.3px 1.3px at 44% 35%, rgba(216, 234, 242, .72), transparent),
+    radial-gradient(1.8px 1.8px at 72% 42%, rgba(216, 234, 242, .9), transparent),
+    radial-gradient(1.3px 1.3px at 34% 48%, rgba(216, 234, 242, .7), transparent),
+    radial-gradient(2.1px 2.1px at 63% 27%, rgba(216, 234, 242, .95), transparent),
+    radial-gradient(1.4px 1.4px at 18% 21%, rgba(216, 234, 242, .8), transparent),
+    radial-gradient(1.6px 1.6px at 90% 33%, rgba(216, 234, 242, .84), transparent),
+    radial-gradient(1.3px 1.3px at 47% 45%, rgba(216, 234, 242, .72), transparent),
+    radial-gradient(1.5px 1.5px at 84% 47%, rgba(216, 234, 242, .8), transparent);
 }
 
 /* Animations run only when the viewer hasn't asked for reduced motion. Each
@@ -1247,9 +1222,9 @@ a:hover { color: var(--ember-hi); }
     animation: hh-ember 7.5s ease-in-out infinite;
     will-change: opacity, transform;
   }
-  /* stars twinkle, the two layers out of phase */
-  .starfield::before { animation: hh-twinkle 2.9s ease-in-out infinite; }
-  .starfield::after  { animation: hh-twinkle 4.3s ease-in-out infinite .5s; }
+  /* stars twinkle, the two layers out of phase and at different depths */
+  .starfield::before { animation: hh-twinkle-a 3.1s ease-in-out infinite; }
+  .starfield::after  { animation: hh-twinkle-b 4.6s ease-in-out infinite .5s; }
 }
 
 @keyframes hh-glow-breathe {
@@ -1285,9 +1260,13 @@ a:hover { color: var(--ember-hi); }
   78%  { opacity: 1;   transform: translateX(-50%) scale(1.06); }
   100% { opacity: .82; transform: translateX(-50%) scale(1); }
 }
-@keyframes hh-twinkle {
-  0%, 100% { opacity: .12; }
+@keyframes hh-twinkle-a {
+  0%, 100% { opacity: .28; }
   50%      { opacity: 1; }
+}
+@keyframes hh-twinkle-b {
+  0%, 100% { opacity: .5; }
+  45%      { opacity: 1; }
 }
 
 /* ---- reduced motion ---------------------------------------------------- */
