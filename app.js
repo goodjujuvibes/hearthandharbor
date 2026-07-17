@@ -218,36 +218,51 @@ const DISCORD_URL = '#';
   if (!fields.length) return;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Build ONE star set on a jittered grid — even coverage, no clusters, no big
+  // empty patches — and reuse it for every starfield so the hero and footer
+  // skies match. Only the column right behind the logo/wordmark is kept clear.
+  const specs = [];
+  const cols = 9, rows = 5;
+  const yTop = 3, yBot = 50;
+  const cellW = 100 / cols;
+  const cellH = (yBot - yTop) / rows;
+  const ex = { x0: 40, x1: 60, y0: 7, y1: 36 }; // logo + wordmark column
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      // jitter within the inner ~64% of the cell keeps a minimum spacing
+      const x = c * cellW + cellW * (0.18 + Math.random() * 0.64);
+      const y = yTop + r * cellH + cellH * (0.18 + Math.random() * 0.64);
+      if (x > ex.x0 && x < ex.x1 && y > ex.y0 && y < ex.y1) continue;
+      specs.push({
+        x: x.toFixed(2), y: y.toFixed(2),
+        size: (Math.random() * 1.5 + 1).toFixed(2),   // 1.0–2.5px
+        alpha: (Math.random() * 0.5 + 0.4).toFixed(2), // 0.40–0.90 brightness
+        dur: (Math.random() * 3 + 2.8).toFixed(2),     // 2.8–5.8s
+        delay: (-Math.random() * 6).toFixed(2),        // desync start
+        min: (Math.random() * 0.4 + 0.15).toFixed(2)   // 0.15–0.55 twinkle depth
+      });
+    }
+  }
+
   fields.forEach(function (field) {
     const frag = document.createDocumentFragment();
-    const count = 34;
-    for (let i = 0; i < count; i++) {
-      // Position in the upper sky; retry to avoid the central content column.
-      let x = 0, y = 0;
-      for (let t = 0; t < 10; t++) {
-        x = Math.random() * 100;
-        y = 3 + Math.random() * 46;
-        const inCenter = x > 36 && x < 64 && y > 6 && y < 44;
-        if (!inCenter) break;
-      }
-      const size = (Math.random() * 1.5 + 1).toFixed(2);   // 1.0–2.5px
-      const alpha = (Math.random() * 0.5 + 0.4).toFixed(2); // 0.40–0.90 brightness
+    specs.forEach(function (s) {
       const star = document.createElement('span');
       star.className = 'star';
-      star.style.left = x.toFixed(2) + '%';
-      star.style.top = y.toFixed(2) + '%';
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-      star.style.background = 'rgba(224, 236, 246, ' + alpha + ')';
+      star.style.left = s.x + '%';
+      star.style.top = s.y + '%';
+      star.style.width = s.size + 'px';
+      star.style.height = s.size + 'px';
+      star.style.background = 'rgba(224, 236, 246, ' + s.alpha + ')';
       if (reduce) {
         star.style.animation = 'none';
       } else {
-        star.style.setProperty('--dur', (Math.random() * 3 + 2.8).toFixed(2) + 's'); // 2.8–5.8s
-        star.style.setProperty('--delay', (-Math.random() * 6).toFixed(2) + 's');    // desync start
-        star.style.setProperty('--min', (Math.random() * 0.4 + 0.15).toFixed(2));    // 0.15–0.55 twinkle depth
+        star.style.setProperty('--dur', s.dur + 's');
+        star.style.setProperty('--delay', s.delay + 's');
+        star.style.setProperty('--min', s.min);
       }
       frag.appendChild(star);
-    }
+    });
     field.appendChild(frag);
   });
 })();

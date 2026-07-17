@@ -114,11 +114,11 @@ a:hover { color: var(--ember-hi); }
   /* a wide, flat glow rising from the bottom edge — firelight spread, not an orb.
      screen blend makes it read as emitted light (a glow), not brown paint over
      the dark; blurred to avoid gradient banding */
-  background: radial-gradient(ellipse 64% 118% at 50% 102%,
-      rgba(255, 205, 130, .85) 0%,
-      rgba(252, 158, 74, .55) 24%,
-      rgba(240, 120, 50, .24) 48%,
-      rgba(220, 96, 40, .08) 66%,
+  background: radial-gradient(ellipse 66% 122% at 50% 103%,
+      rgba(255, 182, 96, .95) 0%,
+      rgba(251, 138, 56, .68) 20%,
+      rgba(240, 104, 42, .34) 44%,
+      rgba(216, 78, 30, .12) 63%,
       transparent 80%);
   filter: blur(5px);
   mix-blend-mode: screen;
@@ -1178,7 +1178,7 @@ a:hover { color: var(--ember-hi); }
   .overlay__glyph--flame path[fill="#f4c877"] {
     transform-box: fill-box;
     transform-origin: 50% 100%; /* pivot at the wick */
-    animation: hh-flame-sway 6s ease-in-out infinite, hh-flame-lum 4.6s ease-in-out infinite;
+    animation: hh-flame-sway 4.8s ease-in-out infinite, hh-flame-lum 3.7s ease-in-out infinite;
     will-change: transform, filter;
   }
   /* the campfire glow at the base breathes slowly */
@@ -1195,12 +1195,13 @@ a:hover { color: var(--ember-hi); }
   74%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.16); }
   100% { opacity: .6;  transform: translate(-50%, -50%) scale(.97); }
 }
-/* sway = a gentle lean at the wick only — no vertical squash */
+/* sway = a lively lean at the wick (with a hint of lateral drift), no squash */
 @keyframes hh-flame-sway {
-  0%, 100% { transform: rotate(0deg); }
-  28%      { transform: rotate(-.9deg); }
-  52%      { transform: rotate(.7deg); }
-  76%      { transform: rotate(-.35deg); }
+  0%, 100% { transform: rotate(0deg)    translateX(0); }
+  20%      { transform: rotate(-2.6deg) translateX(-.3px); }
+  42%      { transform: rotate(1.7deg)  translateX(.15px); }
+  62%      { transform: rotate(2.9deg)  translateX(.35px); }
+  82%      { transform: rotate(-1.2deg) translateX(-.1px); }
 }
 /* lum = a soft brightness flicker, not a strobe */
 @keyframes hh-flame-lum {
