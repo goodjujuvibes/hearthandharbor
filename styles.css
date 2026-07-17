@@ -810,7 +810,7 @@ a:hover { color: var(--ember-hi); }
 .footer__inner { position: relative; z-index: 2; }
 .glyph--footer-flame {
   margin-bottom: 14px;
-  filter: drop-shadow(0 0 14px rgba(232, 150, 63, .75)) drop-shadow(0 0 30px rgba(232, 150, 63, .5));
+  filter: drop-shadow(0 0 16px rgba(232, 150, 63, .6));
 }
 .footer__headline {
   font-family: var(--f-heading);
@@ -962,7 +962,7 @@ a:hover { color: var(--ember-hi); }
 .overlay__panel--join.is-harbor::-webkit-scrollbar-thumb { background: rgba(20, 96, 110, .5); background-clip: padding-box; }
 .overlay__panel--harbor {
   border-color: var(--teal);
-  background: radial-gradient(ellipse at 50% 0%, #e2edf1, #c8dce2 70%);
+  background: radial-gradient(ellipse at 50% 0%, #e7f0ed, #cfe0da 70%);
 }
 .overlay__panel--join { width: 540px; padding: clamp(32px, 6vw, 52px) clamp(24px, 6vw, 52px); }
 .overlay__panel--charter { width: 760px; }
@@ -1106,7 +1106,7 @@ a:hover { color: var(--ember-hi); }
    down" (teal) button; the hero "Join the company" button keeps the hearth skin. */
 .overlay__panel--join.is-harbor {
   border-color: var(--teal);
-  background: radial-gradient(ellipse at 50% 0%, #e2edf1, #c8dce2 70%);
+  background: radial-gradient(ellipse at 50% 0%, #e7f0ed, #cfe0da 70%);
 }
 .overlay__panel--join.is-harbor .join-glyph--hearth { display: none; }
 .overlay__panel--join.is-harbor .join-glyph--harbor { display: block; }
