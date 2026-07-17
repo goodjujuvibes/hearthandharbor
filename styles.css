@@ -115,10 +115,10 @@ a:hover { color: var(--ember-hi); }
      screen blend makes it read as emitted light (a glow), not brown paint over
      the dark; blurred to avoid gradient banding */
   background: radial-gradient(ellipse 66% 122% at 50% 103%,
-      rgba(255, 182, 96, .95) 0%,
-      rgba(251, 138, 56, .68) 20%,
-      rgba(240, 104, 42, .34) 44%,
-      rgba(216, 78, 30, .12) 63%,
+      rgba(255, 208, 120, .96) 0%,
+      rgba(253, 160, 70, .7) 20%,
+      rgba(244, 118, 48, .32) 44%,
+      rgba(220, 86, 33, .11) 63%,
       transparent 80%);
   filter: blur(5px);
   mix-blend-mode: screen;
@@ -350,28 +350,9 @@ a:hover { color: var(--ember-hi); }
 
 /* ============ PARCHMENT BODY =========================================== */
 .body {
-  position: relative;
   /* top-to-bottom fade (no horizontal variation) so the sides don't read as
      darker vertical bands on wide desktop */
   background: linear-gradient(180deg, #f4ebd6 0%, #ede2c8 55%, #e3d4b4 100%);
-}
-/* Parchment character: a fine fiber grain plus a coarse tonal mottle, so the
-   light sections read like aged paper rather than flat fills. Soft-light keeps
-   it clean (gentle lighten/darken) and never muddies the text. */
-/* Aged-paper mottle: soft low-frequency tone variation on a tile wider than the
-   page, so there are no repeating vertical seams. Soft-light keeps it warm and
-   never muddies the text. */
-.body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: .55;
-  mix-blend-mode: overlay;
-  /* medium-grain paper texture on a tile as wide as the page (no vertical seams) */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='1080'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
-  background-size: 1080px 1080px;
 }
 .section {
   padding: var(--pad-y) var(--pad-x);
@@ -653,7 +634,6 @@ a:hover { color: var(--ember-hi); }
 /* ---- Corpse-run quote band -------------------------------------------- */
 .quoteband {
   position: relative;
-  z-index: 3; /* sits above the parchment texture so its dark ground stays clean */
   overflow: hidden;
   text-align: center;
   padding: clamp(34px, 6vw, 58px) var(--pad-x);
@@ -1195,13 +1175,13 @@ a:hover { color: var(--ember-hi); }
   74%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.16); }
   100% { opacity: .6;  transform: translate(-50%, -50%) scale(.97); }
 }
-/* sway = a lively lean at the wick (with a hint of lateral drift), no squash */
+/* sway = a gentle lean at the wick, no squash */
 @keyframes hh-flame-sway {
   0%, 100% { transform: rotate(0deg)    translateX(0); }
-  20%      { transform: rotate(-2.6deg) translateX(-.3px); }
-  42%      { transform: rotate(1.7deg)  translateX(.15px); }
-  62%      { transform: rotate(2.9deg)  translateX(.35px); }
-  82%      { transform: rotate(-1.2deg) translateX(-.1px); }
+  20%      { transform: rotate(-1.5deg) translateX(-.12px); }
+  42%      { transform: rotate(1deg)    translateX(.07px); }
+  62%      { transform: rotate(1.7deg)  translateX(.16px); }
+  82%      { transform: rotate(-.7deg)  translateX(-.05px); }
 }
 /* lum = a soft brightness flicker, not a strobe */
 @keyframes hh-flame-lum {
