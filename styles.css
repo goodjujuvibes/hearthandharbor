@@ -79,14 +79,13 @@ body {
 a { color: var(--ember); }
 a:hover { color: var(--ember-hi); }
 
-/* Inline reference links to the game. Subtle underline in the surrounding
-   text color so they blend into copy but stay tappable/discoverable on
-   mobile (no hover needed to know they're links). */
+/* Inline reference links to the game. Visually identical to the surrounding
+   copy (no underline, same color) — just tappable. On desktop the cursor and
+   a faint hover tint hint at it; on mobile they're invisible-but-clickable. */
 .mmlink {
   color: inherit;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  cursor: pointer;
   transition: color .2s;
 }
 .mmlink:hover { color: var(--ember); }
