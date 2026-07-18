@@ -8,7 +8,7 @@
 /* Discord invite. Set this to the real invite URL (e.g. 'https://discord.gg/xxxx')
    to activate every "Visit our Discord" call-to-action; while it's '#', those
    links stay inert. */
-const DISCORD_URL = '#';
+const DISCORD_URL = 'https://discord.gg/s9PTwvXxj6';
 
 (function () {
   'use strict';
