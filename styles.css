@@ -451,7 +451,7 @@ a:hover { color: var(--ember-hi); }
 .heading {
   font-family: var(--f-heading);
   font-weight: 700;
-  font-size: clamp(23px, 5vw, 31px);
+  font-size: clamp(21px, 4.3vw, 26px);
   color: var(--ink-heading);
   text-align: center;
   line-height: 1.3;
