@@ -1121,19 +1121,28 @@ a:hover { color: var(--ember-hi); }
   max-width: 600px;
   margin: 0 auto 40px;
 }
-.litany__close {
-  display: block;
-  margin-top: 16px;
-  font-style: normal;
-  font-size: .8em;
-  color: var(--rust);
+/* the closing line: same look as the litany, sitting after the articles */
+.litany--coda { margin: 36px auto 0; }
+
+/* expandable full charter */
+.charter-details {
+  max-width: 720px;
+  margin: 26px auto 0;
 }
+.charter-details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.charter-details > summary::-webkit-details-marker { display: none; }
+.charter-details[open] .lbl-closed { display: none; }
+.charter-details:not([open]) .lbl-open { display: none; }
+
 .charter-list {
   display: flex;
   flex-direction: column;
   gap: 26px;
   max-width: 720px;
-  margin: 0 auto;
+  margin: 28px auto 0;
 }
 .charter-item__title {
   font-family: var(--f-heading);

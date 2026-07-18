@@ -91,37 +91,6 @@
   <!-- ============ PARCHMENT BODY ============ -->
   <div class="body">
 
-    <!-- Meaning -->
-    <section class="section">
-      <div class="eyebrow">THE MEANING</div>
-      <h2 class="heading">The near fire and the far light</h2>
-      <p class="lede meaning__lede">The <i>hearth</i> is the fire at your back, rest, warmth, familiar names in guild chat, the people who come back when an expedition goes badly. The <i>harbor</i> is the light across the water, the safe port you set out toward, and the verb too: to harbor good folks, to give them shelter. The going-out and the coming-back are the same act, one idea pointed two ways, somewhere that stays put while everything else moves. This is a home for adventurers, not a retreat from adventure.</p>
-      <div class="cards">
-        <div class="card card--hearth" data-open="hearth" role="button" tabindex="0" aria-label="Read more about The Hearth">
-          <div class="card__glow"></div>
-          <div class="card__title">The Hearth</div>
-          <div class="card__desc">Rest, fellowship, continuity, recovery, the place the company returns to.</div>
-          <div class="read-more">READ MORE <span>→</span></div>
-        </div>
-        <div class="card card--harbor" data-open="harbor" role="button" tabindex="0" aria-label="Read more about The Harbor">
-          <div class="card__glow"></div>
-          <div class="card__title">The Harbor</div>
-          <div class="card__desc">Departure, exploration, the Age of Discovery, where the company sets out.</div>
-          <div class="read-more">READ MORE <span>→</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why we gather / small by design (one argument) -->
-    <section class="section section--deep">
-      <div class="section-head">
-        <div class="eyebrow">SMALL BY DESIGN</div>
-        <h2 class="heading">The people are the point</h2>
-      </div>
-      <p class="lede thesis">Most guilds treat the people as the means and the loot as the end. We run it the other way around: the content is the pretext, and the company is the point. A dungeon is just the reason we all happened to be in one place long enough for something to happen between us. It is also why we stay small. Fellowship doesn't scale, and a hearth is only warm for people you actually know, so we keep to the size of a circle of friends rather than a server's population: roughly 30&ndash;50 regulars, enough for groups, expeditions, and trades, few enough that the names stay familiar. One hundred is a ceiling, not a goal.</p>
-      <p class="lede thesis"><a class="mmlink mmlink--u" href="https://monstersandmemories.com" target="_blank" rel="noopener">Monsters &amp; Memories</a> is built for exactly this. The slow travel, the forced grouping, the corpse runs, the friction most games sand off, is the machinery that makes fellowship. We take the game as it was designed and turn it into something worth belonging to.</p>
-    </section>
-
     <!-- The Charter -->
     <section class="section">
       <div class="section-head" style="margin-bottom:26px">
@@ -134,9 +103,18 @@
         the mirth and mettle,<br>
         the wipes and wisdom,<br>
         and the Monsters &amp; Memories.
-        <span class="litany__close">All of it shared in good company at Hearth &amp; Harbor.</span>
       </p>
-      <div class="charter-list">
+      <details class="charter-details">
+        <summary class="charter-summary">
+          <span class="textlink charter-toggle">
+            <span class="textlink__line textlink__line--l"></span>
+            <span class="textlink__dot"></span>
+            <span class="textlink__label"><span class="lbl-closed">READ THE FULL CHARTER</span><span class="lbl-open">HIDE THE FULL CHARTER</span></span>
+            <span class="textlink__dot"></span>
+            <span class="textlink__line textlink__line--r"></span>
+          </span>
+        </summary>
+        <div class="charter-list">
         <div>
           <div class="charter-item__title"><span class="num">I.</span> The fire and frontier</div>
           <div class="charter-item__desc">
@@ -171,6 +149,8 @@
           </div>
         </div>
       </div>
+      </details>
+      <p class="litany litany--coda">All of it shared in good company at Hearth &amp; Harbor.</p>
     </section>
 
     <!-- What we do list -->
@@ -189,7 +169,28 @@
         <div class="dolist__item"><span class="mark">✦</span>Low-pressure expedition nights</div>
         <div class="dolist__item"><span class="mark">✦</span>Fireside gatherings between voyages</div>
       </div>
-      <p class="note">Active enough to create regular opportunities, never a second job.</p>
+      <p class="note">Active enough to create regular opportunities, never a second job. And small on purpose: roughly 30 to 50 regulars, few enough that the names on the roster stay familiar. One hundred is a ceiling, not a goal.</p>
+    </section>
+
+    <!-- Meaning -->
+    <section class="section">
+      <div class="eyebrow">THE MEANING</div>
+      <h2 class="heading">The near fire and the far light</h2>
+      <p class="lede meaning__lede">The <i>hearth</i> is the fire at your back, rest, warmth, familiar names in guild chat, the people who come back when an expedition goes badly. The <i>harbor</i> is the light across the water, the safe port you set out toward, and the verb too: to harbor good folks, to give them shelter. The going-out and the coming-back are the same act, one idea pointed two ways, somewhere that stays put while everything else moves. This is a home for adventurers, not a retreat from adventure.</p>
+      <div class="cards">
+        <div class="card card--hearth" data-open="hearth" role="button" tabindex="0" aria-label="Read more about The Hearth">
+          <div class="card__glow"></div>
+          <div class="card__title">The Hearth</div>
+          <div class="card__desc">Rest, fellowship, continuity, recovery, the place the company returns to.</div>
+          <div class="read-more">READ MORE <span>→</span></div>
+        </div>
+        <div class="card card--harbor" data-open="harbor" role="button" tabindex="0" aria-label="Read more about The Harbor">
+          <div class="card__glow"></div>
+          <div class="card__title">The Harbor</div>
+          <div class="card__desc">Departure, exploration, the Age of Discovery, where the company sets out.</div>
+          <div class="read-more">READ MORE <span>→</span></div>
+        </div>
+      </div>
     </section>
 
     <!-- Corpse-run band -->
@@ -199,21 +200,6 @@
         <div class="quoteband__eyebrow">WORDS FOR THE WALK BACK</div>
         <p class="quoteband__quote">&ldquo;Your corpse is not lost. It is temporarily exploring without you.&rdquo;</p>
         <p class="quoteband__sub">The fire stays lit. We are coming back for you.</p>
-      </div>
-    </section>
-
-    <!-- Be good company -->
-    <section class="section section--sm">
-      <div class="section-head" style="margin-bottom:30px">
-        <div class="eyebrow">HOW WE TREAT ONE ANOTHER</div>
-        <h2 class="heading">Be good company</h2>
-        <p class="gather-sub">One rule underneath all the others. Everything else is just what it looks like in practice.</p>
-      </div>
-      <div class="pillars">
-        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Presence over attendance</div><div class="pillar__desc">Real life comes first, no one owes the guild constant hours. But when you're around, take part: talk, group, teach, invite someone along.</div></div></div>
-        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Handle failure well</div><div class="pillar__desc">Bad pulls, wrong turns, and wipes are the game. We solve them without blaming, humiliating, or raging at one another.</div></div></div>
-        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Help without controlling</div><div class="pillar__desc">Share what you know freely, but don't force your route, build, pace, or definition of efficiency on anyone.</div></div></div>
-        <div class="pillar"><span class="pillar__mark">✦</span><div><div class="pillar__title">Protect trust</div><div class="pillar__desc">No misusing guild resources, manipulating loot, spreading private talk, or treating other members as tools for your own progress.</div></div></div>
       </div>
     </section>
 
