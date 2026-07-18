@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://goodjujuvibes.github.io/hearthandharbor/sitemap.xml
+Sitemap: https://hearthandharbor.co/sitemap.xml
