@@ -591,9 +591,10 @@ a:hover { color: var(--ember-hi); }
 /* ---- What the company does (list) ------------------------------------- */
 .gl__intro { max-width: 720px; margin: 0 auto 34px; }
 .dolist {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px 60px;
+  column-count: 2;
+  column-gap: 56px;
+  max-width: 720px;
+  margin: 0 auto;
   font-family: var(--f-body);
   font-size: 17.5px;
   color: var(--ink-body);
@@ -602,8 +603,13 @@ a:hover { color: var(--ember-hi); }
   display: flex;
   gap: 12px;
   align-items: baseline;
+  break-inside: avoid;
+  margin-bottom: 15px;
 }
 .mark { color: var(--teal); }
+@media (max-width: 760px) {
+  .dolist { column-count: 1; max-width: 380px; }
+}
 .note {
   text-align: center;
   font-family: var(--f-body);
