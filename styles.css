@@ -51,6 +51,11 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+/* The hero/footer/strip firelight glows are intentionally wider than the
+   viewport and clipped by their parents. On mobile, composited + sub-pixel
+   rounding can still let those wide layers pan a few px sideways, so forbid
+   horizontal scroll at the document root. */
+html, body { overflow-x: hidden; }
 
 body {
   margin: 0;
