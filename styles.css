@@ -58,11 +58,17 @@ body {
      depth instead of a flat fill (matches the page tone at center, darkens
      gently toward the screen edges) */
   background: radial-gradient(ellipse 85% 75% at 50% 30%, #0b1a26 0%, #091622 60%, #07121c 100%);
-  background-attachment: fixed;
   color: var(--ink-body);
   font-family: var(--f-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+/* The vignette only shows in the desktop side margins (page caps at 1080px),
+   so pin it to the viewport there. Below that the page is full-width and the
+   dark body background is not visible, so a fixed background would be pure
+   scroll cost on mobile with nothing to show for it. */
+@media (min-width: 1081px) {
+  body { background-attachment: fixed; }
 }
 
 a { color: var(--ember); }
@@ -127,12 +133,10 @@ a:hover { color: var(--ember-hi); }
   position: absolute;
   left: 50%;
   bottom: -80px;
-  transform: translateX(-50%);
   width: 132%;
   height: 380px;
   pointer-events: none;
-  /* wide, flat firelight rising from the bottom; screen blend makes it read as
-     emitted light (not brown paint) and blur avoids gradient banding */
+  /* wide, flat firelight rising from the bottom; blur avoids gradient banding */
   background: radial-gradient(ellipse 66% 122% at 50% 103%,
       rgba(255, 221, 142, .85) 0%,
       rgba(254, 176, 84, .56) 20%,
@@ -140,7 +144,11 @@ a:hover { color: var(--ember-hi); }
       rgba(223, 92, 37, .1) 63%,
       transparent 80%);
   filter: blur(13px);
-  mix-blend-mode: screen;
+  /* Over the near-black hero/footer, normal compositing reads almost identically
+     to a screen blend, but without forcing a per-frame backdrop re-composite
+     (the main cause of hero scroll jank on mobile). translateZ promotes it to
+     its own layer so scrolling just moves a cached texture. */
+  transform: translateX(-50%) translateZ(0);
 }
 
 /* signature divider: line — dot — line (amber left / teal right) */
