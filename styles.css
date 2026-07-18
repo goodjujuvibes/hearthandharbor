@@ -13,7 +13,7 @@
   --strip-brown-2: #1a1109;
 
   /* parchment / body surfaces */
-  --parchment-deep: #e7d9b4;
+  --parchment-deep: #e6dccb;
   --hairline: #cdbd93;
 
   /* accents */
@@ -384,8 +384,10 @@ a:hover { color: var(--ember-hi); }
 /* ============ PARCHMENT BODY =========================================== */
 .body {
   /* uniform light parchment so every light section is the same tone (the
-     alternation reads as exactly two colors: this light and the deep sections) */
-  background: #f2e8ce;
+     alternation reads as exactly two colors: this light and the deep sections).
+     Tuned slightly off pure-yellow so warm/vivid monitor presets don't push
+     the warm parchment tones into garish yellow. */
+  background: #f1e9d7;
 }
 .section {
   padding: var(--pad-y) var(--pad-x);
@@ -440,8 +442,8 @@ a:hover { color: var(--ember-hi); }
   transition: all .2s;
 }
 .card--hearth {
-  background: linear-gradient(180deg, #f6e8c8, #e2cf9f);
-  border-color: #d0b985;
+  background: linear-gradient(180deg, #f3e9d8, #e2d5bd);
+  border-color: #cdbb96;
 }
 .card--hearth:hover {
   border-color: #c99a4e;
