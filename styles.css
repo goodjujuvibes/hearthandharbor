@@ -503,14 +503,7 @@ a:hover { color: var(--ember-hi); }
 
 /* ---- Why we gather ----------------------------------------------------- */
 .thesis { max-width: 780px; }
-/* A thesis paragraph following another reads as its consequence: slightly
-   smaller and muted so the two don't compete as equal blocks. */
-.thesis + .thesis {
-  font-size: 17px;
-  color: var(--ink-muted);
-  max-width: 720px;
-  margin-top: 22px;
-}
+.thesis + .thesis { margin-top: 22px; }
 
 /* ---- The Way (principles) --------------------------------------------- */
 .principles {
