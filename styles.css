@@ -79,6 +79,28 @@ body {
 a { color: var(--ember); }
 a:hover { color: var(--ember-hi); }
 
+/* Inline reference links to the game. Subtle underline in the surrounding
+   text color so they blend into copy but stay tappable/discoverable on
+   mobile (no hover needed to know they're links). */
+.mmlink {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .2s;
+}
+.mmlink:hover { color: var(--ember); }
+
+/* Footer wordmark doubles as a back-to-top link; keep it looking like the
+   wordmark, just tappable. */
+.to-top {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter .2s;
+}
+.to-top:hover { filter: brightness(1.12); }
+
 /* Keyboard focus: a clear ring, tuned per ground (rust on parchment/overlays,
    warm ember on the dark hero and footer). Only shows for keyboard users. */
 :focus-visible {
