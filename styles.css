@@ -1120,7 +1120,7 @@ a:hover { color: var(--ember-hi); }
 /* the litany: the charter's poem, sitting above the articles */
 .litany {
   font-family: var(--f-body);
-  font-style: oblique 12deg;
+  font-style: italic;
   font-weight: 500;
   font-size: clamp(18px, 3.4vw, 21px);
   line-height: 1.9;
