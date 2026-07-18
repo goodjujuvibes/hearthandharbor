@@ -1121,8 +1121,10 @@ a:hover { color: var(--ember-hi); }
   max-width: 600px;
   margin: 0 auto 40px;
 }
-/* the closing line: same look as the litany, sitting after the articles */
-.litany--coda { margin: 36px auto 0; }
+/* the litany's closing line: same italic look, a touch bolder. Appears in the
+   litany itself, and again at the end of the expanded full charter. */
+.litany__all { font-weight: 600; }
+.litany--coda { margin: 30px auto 0; font-weight: 600; }
 
 /* expandable full charter */
 .charter-details {
