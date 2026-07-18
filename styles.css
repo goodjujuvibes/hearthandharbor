@@ -89,6 +89,12 @@ a:hover { color: var(--ember-hi); }
   transition: color .2s;
 }
 .mmlink:hover { color: var(--ember); }
+/* Underlined variant (used in the Small by Design section). */
+.mmlink--u {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
 
 /* Footer wordmark doubles as a back-to-top link; keep it looking like the
    wordmark, just tappable. */
