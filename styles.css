@@ -1121,11 +1121,12 @@ a:hover { color: var(--ember-hi); }
 .litany {
   font-family: var(--f-body);
   font-style: italic;
-  font-size: clamp(17px, 3.2vw, 20px);
+  font-weight: 500;
+  font-size: clamp(18px, 3.4vw, 21px);
   line-height: 1.9;
-  color: var(--ink-body);
+  color: var(--ink-heading);
   text-align: center;
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto 40px;
 }
 /* the litany's closing line: same italic look, a touch bolder. Appears in the
