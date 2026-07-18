@@ -503,6 +503,14 @@ a:hover { color: var(--ember-hi); }
 
 /* ---- Why we gather ----------------------------------------------------- */
 .thesis { max-width: 780px; }
+/* A thesis paragraph following another reads as its consequence: slightly
+   smaller and muted so the two don't compete as equal blocks. */
+.thesis + .thesis {
+  font-size: 17px;
+  color: var(--ink-muted);
+  max-width: 720px;
+  margin-top: 22px;
+}
 
 /* ---- The Way (principles) --------------------------------------------- */
 .principles {
@@ -643,25 +651,6 @@ a:hover { color: var(--ember-hi); }
   color: var(--ink-muted);
   line-height: 1.6;
   margin-top: 2px;
-}
-
-/* ---- Small by design --------------------------------------------------- */
-.sbd__headline {
-  font-family: var(--f-heading);
-  font-weight: 700;
-  font-size: clamp(20px, 4vw, 25px);
-  color: var(--ink-heading);
-  line-height: 1.4;
-  max-width: 730px;
-  margin: 0 auto;
-}
-.sbd__body {
-  font-family: var(--f-body);
-  font-size: 17px;
-  color: var(--ink-muted);
-  line-height: 1.7;
-  max-width: 660px;
-  margin: 14px auto 0;
 }
 
 /* ---- Corpse-run quote band -------------------------------------------- */
@@ -966,7 +955,6 @@ a:hover { color: var(--ember-hi); }
 }
 .overlay__panel--join { width: 540px; padding: clamp(32px, 6vw, 52px) clamp(24px, 6vw, 52px); }
 .overlay__panel--charter { width: 760px; }
-.overlay__panel--channels { width: 720px; }
 .overlay__panel--plain { background: radial-gradient(ellipse at 50% 0%, #f4ebd6, #ede2c8 70%); }
 .overlay__close {
   position: absolute;
@@ -1015,7 +1003,6 @@ a:hover { color: var(--ember-hi); }
 .overlay__title--harbor { color: #243238; }
 .overlay__title--join { font-size: clamp(24px, 5vw, 30px); margin-bottom: 8px; }
 .overlay__title--charter { margin-bottom: 30px; }
-.overlay__title--channels { margin-bottom: 30px; }
 .overlay__prose {
   display: flex;
   flex-direction: column;
@@ -1143,26 +1130,6 @@ a:hover { color: var(--ember-hi); }
   color: var(--ink-body);
   line-height: 1.7;
   margin-top: 5px;
-}
-
-/* channels overlay */
-.channels-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px 36px;
-}
-.channel__name {
-  font-family: var(--f-label);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--rust);
-}
-.channel__desc {
-  font-family: var(--f-body);
-  font-size: 15.5px;
-  color: var(--ink-muted);
-  line-height: 1.55;
-  margin-top: 2px;
 }
 
 /* ---- reduced motion ---------------------------------------------------- */
