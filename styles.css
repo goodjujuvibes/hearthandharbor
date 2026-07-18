@@ -589,6 +589,7 @@ a:hover { color: var(--ember-hi); }
 }
 
 /* ---- What the company does (list) ------------------------------------- */
+.gl__intro { max-width: 720px; margin: 0 auto 34px; }
 .dolist {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
