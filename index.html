@@ -189,6 +189,22 @@
       </div>
     </section>
 
+    <!-- Roster teaser -->
+    <section class="section roster-teaser">
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="eyebrow">THE COMPANY</div>
+        <h2 class="heading">Who's Aboard</h2>
+      </div>
+      <p class="lede roster-teaser__line">A small crew so far, with room by the fire for more.</p>
+      <button type="button" class="textlink roster-open" data-open="roster">
+        <span class="textlink__line textlink__line--l"></span>
+        <span class="textlink__dot"></span>
+        <span class="textlink__label">SEE THE ROSTER</span>
+        <span class="textlink__dot"></span>
+        <span class="textlink__line textlink__line--r"></span>
+      </button>
+    </section>
+
     <!-- Cultural strip (mid) -->
     <div class="strip">
       <div class="strip__rule strip__rule--top rule-brass"></div>
@@ -372,6 +388,42 @@
   </footer>
 
 </main>
+
+<!-- ============ OVERLAY: ROSTER ============ -->
+<div class="overlay" data-overlay="roster" role="dialog" aria-modal="true" aria-label="The Company">
+  <div class="overlay__panel overlay__panel--plain overlay__panel--roster">
+    <button type="button" class="overlay__close" aria-label="Close">✕</button>
+    <div class="overlay__eyebrow">THE COMPANY</div>
+    <div class="overlay__title">Who's Aboard</div>
+    <div class="roster">
+      <!-- data-race and data-words are stored but not displayed yet; flip on later -->
+      <div class="roster__member" data-race="Goblin" data-words="">
+        <div class="roster__row">
+          <span class="roster__name">Joromatar</span>
+          <span class="roster__sep">·</span>
+          <span class="roster__class">Shaman</span>
+          <span class="roster__tag">Guild Leader</span>
+        </div>
+        <details class="roster__alts">
+          <summary class="roster__alts-summary"><span class="roster__alts-label">3 alts</span></summary>
+          <div class="roster__alt" data-race="Goblin"><span class="roster__name">Jorotarr</span><span class="roster__sep">·</span><span class="roster__class">Fighter</span></div>
+          <div class="roster__alt" data-race="Halfling"><span class="roster__name">Joromund</span><span class="roster__sep">·</span><span class="roster__class">Druid</span></div>
+          <div class="roster__alt" data-race="Gnome"><span class="roster__name">Joromarr</span><span class="roster__sep">·</span><span class="roster__class">Spellblade</span></div>
+        </details>
+      </div>
+      <div class="roster__member" data-race="Dwarf" data-words="">
+        <div class="roster__row"><span class="roster__name">Thae</span><span class="roster__sep">·</span><span class="roster__class">Cleric</span></div>
+      </div>
+      <div class="roster__member" data-race="" data-words="">
+        <div class="roster__row"><span class="roster__name">Leiman</span><span class="roster__sep">·</span><span class="roster__class">Wizard</span></div>
+      </div>
+      <div class="roster__member" data-race="" data-words="">
+        <div class="roster__row"><span class="roster__name">Murdoc</span><span class="roster__sep">·</span><span class="roster__class">Monk</span></div>
+      </div>
+    </div>
+    <div class="overlay__closing">Room by the fire for more.</div>
+  </div>
+</div>
 
 <!-- ============ OVERLAY: JOIN / RECRUITMENT ============ -->
 <div class="overlay" data-overlay="join" role="dialog" aria-modal="true" aria-label="Join the Company">
