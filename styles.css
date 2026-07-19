@@ -794,16 +794,14 @@ a:hover { color: var(--ember-hi); }
   font-size: 22px;
   line-height: 1;
   vertical-align: middle;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.3s ease, color 0.2s ease;
 }
-/* glyph swap instead of rotation: down when closed, up when open */
 .charter-arrow::before { content: "\25BE"; }
-.charter-details[open] .charter-arrow::before { content: "\25B4"; }
-/* hover interaction: brighten and nudge toward where the click will take it */
+/* vertical flip on open (down -> up); passes through a flat sliver, never sideways */
+.charter-details[open] .charter-arrow { transform: scaleY(-1); }
+/* subtle hover affordance: just brighten, no movement */
 .charter-summary:hover .charter-arrow,
-.charter-summary:focus-visible .charter-arrow { color: var(--ember); transform: translateY(3px); }
-.charter-details[open] .charter-summary:hover .charter-arrow,
-.charter-details[open] .charter-summary:focus-visible .charter-arrow { transform: translateY(-3px); }
+.charter-summary:focus-visible .charter-arrow { color: var(--ember); }
 
 /* ---- Joining ----------------------------------------------------------- */
 .join-section { padding-bottom: 70px; border-top: 1px solid var(--hairline); border-bottom: none; }
