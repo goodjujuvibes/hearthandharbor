@@ -773,6 +773,10 @@ a:hover { color: var(--ember-hi); }
 /* consistent in-paragraph break, matches the 12px p + p rhythm */
 .para-break { display: block; height: 12px; }
 
+/* hearth / harbor term highlights */
+.hl-hearth { color: var(--rust); }
+.hl-harbor { color: var(--teal); }
+
 /* discord channel chip */
 .channel {
   color: var(--teal);
