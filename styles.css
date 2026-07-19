@@ -798,6 +798,8 @@ a:hover { color: var(--ember-hi); }
   font: inherit;
   color: inherit;
 }
+.roster-open:hover .charter-arrow,
+.roster-open:focus-visible .charter-arrow { color: var(--ember); }
 .overlay__panel--roster { text-align: center; }
 .roster {
   max-width: 420px;
