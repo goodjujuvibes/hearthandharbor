@@ -763,6 +763,9 @@ a:hover { color: var(--ember-hi); }
 .faq__a-inner p { margin: 0; }
 .faq__a-inner p + p { margin-top: 12px; }
 
+/* consistent in-paragraph break, matches the 12px p + p rhythm */
+.para-break { display: block; height: 12px; }
+
 /* ---- Joining ----------------------------------------------------------- */
 .join-section { padding-bottom: 70px; border-top: 1px solid var(--hairline); border-bottom: none; }
 .steps {
