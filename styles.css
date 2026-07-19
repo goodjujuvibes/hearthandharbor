@@ -791,12 +791,13 @@ a:hover { color: var(--ember-hi); }
 .charter-arrow {
   display: inline-block;
   color: var(--brass);
-  font-size: 15px;
+  font-size: 22px;
   line-height: 1;
-  transform: translateY(-1px);
-  transition: transform 0.25s ease;
+  vertical-align: middle;
 }
-.charter-details[open] .charter-arrow { transform: translateY(-1px) rotate(180deg); }
+/* glyph swap instead of rotation: down when closed, up when open */
+.charter-arrow::before { content: "\25BE"; }
+.charter-details[open] .charter-arrow::before { content: "\25B4"; }
 
 /* ---- Joining ----------------------------------------------------------- */
 .join-section { padding-bottom: 70px; border-top: 1px solid var(--hairline); border-bottom: none; }
