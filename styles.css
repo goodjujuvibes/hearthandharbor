@@ -794,10 +794,16 @@ a:hover { color: var(--ember-hi); }
   font-size: 22px;
   line-height: 1;
   vertical-align: middle;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 /* glyph swap instead of rotation: down when closed, up when open */
 .charter-arrow::before { content: "\25BE"; }
 .charter-details[open] .charter-arrow::before { content: "\25B4"; }
+/* hover interaction: brighten and nudge toward where the click will take it */
+.charter-summary:hover .charter-arrow,
+.charter-summary:focus-visible .charter-arrow { color: var(--ember); transform: translateY(3px); }
+.charter-details[open] .charter-summary:hover .charter-arrow,
+.charter-details[open] .charter-summary:focus-visible .charter-arrow { transform: translateY(-3px); }
 
 /* ---- Joining ----------------------------------------------------------- */
 .join-section { padding-bottom: 70px; border-top: 1px solid var(--hairline); border-bottom: none; }
