@@ -779,13 +779,13 @@ a:hover { color: var(--ember-hi); }
 
 /* discord channel chip */
 .channel {
-  color: var(--rust);
   font-weight: 600;
-  background: rgba(154, 78, 23, 0.1);
   padding: 1px 6px;
   border-radius: 4px;
   white-space: nowrap;
 }
+.channel--dock { color: var(--teal); background: rgba(20, 96, 110, 0.1); }
+.channel--fire { color: var(--rust); background: rgba(154, 78, 23, 0.1); }
 
 /* charter toggle arrows (flank the label, flip open) */
 .charter-arrow {
