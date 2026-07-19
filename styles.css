@@ -766,6 +766,27 @@ a:hover { color: var(--ember-hi); }
 /* consistent in-paragraph break, matches the 12px p + p rhythm */
 .para-break { display: block; height: 12px; }
 
+/* discord channel chip */
+.channel {
+  color: var(--teal);
+  font-weight: 600;
+  background: rgba(20, 96, 110, 0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* charter toggle arrows (flank the label, flip open) */
+.charter-arrow {
+  display: inline-block;
+  color: var(--brass);
+  font-size: 11px;
+  line-height: 1;
+  transform: translateY(-1px);
+  transition: transform 0.25s ease;
+}
+.charter-details[open] .charter-arrow { transform: translateY(-1px) rotate(180deg); }
+
 /* ---- Joining ----------------------------------------------------------- */
 .join-section { padding-bottom: 70px; border-top: 1px solid var(--hairline); border-bottom: none; }
 .steps {
