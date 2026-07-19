@@ -774,8 +774,8 @@ a:hover { color: var(--ember-hi); }
 .para-break { display: block; height: 12px; }
 
 /* hearth / harbor term highlights */
-.hl-hearth { color: var(--rust); }
-.hl-harbor { color: var(--teal); }
+.hl-hearth { color: var(--rust); font-weight: 700; }
+.hl-harbor { color: var(--teal); font-weight: 700; }
 
 /* discord channel chip */
 .channel {
