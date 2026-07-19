@@ -288,7 +288,7 @@ a:hover { color: var(--ember-hi); }
 }
 .hero__subtitle {
   font-family: var(--f-body);
-  font-size: 18px;
+  font-size: 20px;
   color: var(--tagline-amber);
   margin-top: 14px;
   letter-spacing: 0.02em;
@@ -779,9 +779,9 @@ a:hover { color: var(--ember-hi); }
 
 /* discord channel chip */
 .channel {
-  color: var(--teal);
+  color: var(--rust);
   font-weight: 600;
-  background: rgba(20, 96, 110, 0.1);
+  background: rgba(154, 78, 23, 0.1);
   padding: 1px 6px;
   border-radius: 4px;
   white-space: nowrap;
@@ -1155,7 +1155,7 @@ a:hover { color: var(--ember-hi); }
 /* the litany: the charter's poem, sitting above the articles */
 .litany {
   font-family: var(--f-body);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
   font-size: clamp(18px, 3.4vw, 21px);
   line-height: 1.9;
@@ -1166,8 +1166,8 @@ a:hover { color: var(--ember-hi); }
 }
 /* the litany's closing line: same italic look, a touch bolder. Appears in the
    litany itself, and again at the end of the expanded full charter. */
-.litany__all { font-weight: 600; }
-.litany--coda { margin: 30px auto 0; font-weight: 600; max-width: 720px; text-align: left; }
+.litany__all { font-weight: 600; font-style: italic; }
+.litany--coda { margin: 30px auto 0; font-weight: 600; font-style: italic; max-width: 720px; text-align: left; }
 
 /* expandable full charter */
 .charter-details {
